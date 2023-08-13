@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="./font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section class="page">
+        <section>
+            <ul class="tabs-controls">
+                <li class="tabs-controls-item">
+                    <a href="" class="tabs-controls-link tabs-controls-link-active" data-id="1">HOME</a>
+                </li>
+                <li class="tabs-controls-item">
+                    <a href="" class="tabs-controls-link" data-id="2">GALLERY</a>
+                </li>
+                <li class="tabs-controls-item">
+                    <a href="" class="tabs-controls-link" data-id="3">TEAM</a>
+                </li>
+                <li class="tabs-controls-item">
+                    <a href="" class="tabs-controls-link" data-id="4">TESTIMONIAL</a>
+                </li>
+                <li class="tabs-controls-item">
+                    <a href="" class="tabs-controls-link" data-id="5">FAQ</a>
+                </li>
+                <li class="tabs-controls-item">
+                    <a href="" class="tabs-controls-link" data-id="6">LOCATION</a>
+                </li>
+            </ul>
+        </section>
+        <section class="cards-container">
+            <div class="card card-current" id="1">
+                <h1>HOME</h1>
+                <br>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae impedit deleniti fugiat quasi, doloribus ipsum distinctio
+                    , odio fuga quia perspiciatis, dolor adipisci explicabo? Harum, ad doloremque! Nesciunt at non amet?
+                </p>
+                <div class="social">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-youtube"></i>
+                </div>
+            </div>
+            <div class="card" id="2">
+                <h1>GALLERY</h1>
+                <br>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae impedit deleniti fugiat quasi, doloribus ipsum distinctio
+                    , odio fuga quia perspiciatis, dolor adipisci explicabo? Harum, ad doloremque! Nesciunt at non amet?
+                </p>
+                <div class="social">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-youtube"></i>
+                </div>
+            </div>
+            <div class="card" id="3">
+                <h1>TEAM</h1>
+                <br>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae impedit deleniti fugiat quasi, doloribus ipsum distinctio
+                    , odio fuga quia perspiciatis, dolor adipisci explicabo? Harum, ad doloremque! Nesciunt at non amet?
+                </p>
+                <div class="social">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-youtube"></i>
+                </div>
+            </div>
+            <div class="card" id="4">
+                <h1>TESTIMONIAL</h1>
+                <br>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae impedit deleniti fugiat quasi, doloribus ipsum distinctio
+                    , odio fuga quia perspiciatis, dolor adipisci explicabo? Harum, ad doloremque! Nesciunt at non amet?
+                </p>
+                <div class="social">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-youtube"></i>
+                </div>
+            </div>
+            <div class="card" id="5">
+                <h1>FAQ</h1>
+                <br>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae impedit deleniti fugiat quasi, doloribus ipsum distinctio
+                    , odio fuga quia perspiciatis, dolor adipisci explicabo? Harum, ad doloremque! Nesciunt at non amet?
+                </p>
+                <div class="social">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-youtube"></i>
+                </div>
+            </div>
+            <div class="card" id="6">
+                <h1>LOCATION</h1>
+                <br>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae impedit deleniti fugiat quasi, doloribus ipsum distinctio
+                    , odio fuga quia perspiciatis, dolor adipisci explicabo? Harum, ad doloremque! Nesciunt at non amet?
+                </p>
+                <div class="social">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-youtube"></i>
+                </div>
+            </div>
+        </section>
+    </section>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    $(function () {
+        var oldId = 1;
+        $(".tabs-controls-link").click(function (e) {
+            e.preventDefault();
+            if ($(this).hasClass("tabs-controls-link-active")) {
+                return;
+            }
+            var currentId = $(this).data("id");
+
+            $(".tabs-controls-link-active").removeClass("tabs-controls-link-active");
+            $(this).addClass("tabs-controls-link-active");
+
+            // 已经隐藏了
+            if (currentId < oldId) {
+                $(".card").each(function (index) {
+                    if (index + 1 >= currentId) {
+                        //console.log((oldId - index - 1) * 100);
+                        setTimeout(function () {
+                            $(".card").eq(index).removeClass("hidden");
+                        }, (oldId - index - 1) * 100)
+                    }
+                })
+            }
+            // 还没隐藏
+            else {
+                $(".card").each(function (index) {
+                    if (index + 1 < currentId) {
+                        //console.log((index - oldId + 1) * 100);
+                        setTimeout(function () {
+                            $(".card").eq(index).addClass("hidden");
+                        }, (index - oldId + 1) * 100)
+                    }
+                })
+            }
+
+            oldId = currentId;
+        })
+    })
+</script>
+
+</html>

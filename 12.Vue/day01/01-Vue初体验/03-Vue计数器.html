@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+
+  <div class="app">
+    <h2>{{counter}}</h2>
+    <!-- <button v-on:click="counter++">+</button>
+        <button v-on:click="counter--">-</button> -->
+    <!-- 语法糖：v-on:click==>@click -->
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 语法糖：简写
+    const app = new Vue({
+      el: '.app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        add: function () {
+          this.counter++;
+        },
+        sub: function () {
+          this.counter--;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

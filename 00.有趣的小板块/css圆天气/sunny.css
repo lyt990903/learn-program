@@ -1,0 +1,73 @@
+.sunny {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    display: block;
+    position: relative;
+    font-size: -webkit-calc(11em);
+    font-size: calc(11em);
+    width: 1em;
+    height: 1em;
+    margin: .3em;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 0 0 0.05em currentColor inset, 0 0 0.3em -0.03em #fd6f21;
+    box-shadow: 0 0 0 0.05em currentColor inset, 0 0 0.3em -0.03em #fd6f21;
+    background: -webkit-linear-gradient(top right, #fc5830 0%, #f98c24 65%);
+    background: linear-gradient(to top right, #fc5830 0%, #f98c24 65%);
+}
+
+.sun {
+    position: absolute;
+    top: 20%;
+    left: 80%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 40%;
+    border-radius: 100%;
+    background: #ffeb3b;
+    -webkit-box-shadow: 0 0 0 0.02em currentColor inset, 0 0 0.3em -0.03em #fd6f21;
+    box-shadow: 0 0 0 0.02em currentColor inset, 0 0 0.3em -0.03em #fd6f21;
+    -webkit-transform-origin: .1em .1em;
+    -ms-transform-origin: .1em .1em;
+    transform-origin: .1em .1em;
+}
+
+.sun:after {
+    content: '';
+    position: absolute;
+    top: .1em;
+    left: 0;
+    will-change: transform;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: .1em;
+    height: .1em;
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: 0 0 0.1em 0 rgba(255, 255, 255, 0.3) inset, -0.1em -0.1em 0 0.2em rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0.1em 0 rgba(255, 255, 255, 0.3) inset, -0.1em -0.1em 0 0.2em rgba(255, 255, 255, 0.1);
+    -webkit-animation: flare 12000ms infinite alternate linear;
+    animation: flare 12000ms infinite alternate linear;
+}
+
+@-webkit-keyframes flare {
+    to {
+        -webkit-transform: translate(-0.3em, 0.3em);
+        transform: translate(-0.3em, 0.3em);
+        opacity: .4;
+        font-size: .2em;
+    }
+}
+
+@keyframes flare {
+    to {
+        -webkit-transform: translate(-0.3em, 0.3em);
+        transform: translate(-0.3em, 0.3em);
+        opacity: .4;
+        font-size: .2em;
+    }
+}

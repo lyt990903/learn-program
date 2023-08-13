@@ -1,0 +1,9 @@
+@color: #fff;
+#div1{
+    color: @color;
+}
+
+#div2{
+    &:extend(#div1);
+    background: greenyellow;
+}

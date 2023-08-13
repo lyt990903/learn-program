@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // 认识Symbol,Symbol是第七种数据类型
+  let s1 = Symbol("test1");
+  let s2 = Symbol("test1");
+  console.log(s1, typeof s1);
+  console.log(s1 === s2);
+
+  let s3 = Symbol.for("test2");
+  let s4 = Symbol.for("test2");
+  console.log(s3, typeof s3);
+  console.log(s3 === s4);
+</script>
+
+<script>
+  // Symbol可以用于为未知对象添加方法
+  let game = {
+    name: "hades",
+    up: function () {
+      console.log("向上移动");
+    },
+    down: function () {
+      console.log("向下移动");
+    }
+  }
+
+  // 会覆盖原本的up方法
+  // game.up = function(){
+  //   console.log("new up");
+  // }
+
+
+  // 方法一
+  let methods = {
+    up: Symbol(),
+    down: Symbol()
+  }
+  game[methods.up] = function () {
+    console.log("new up");
+  }
+  game[methods.down] = function () {
+    console.log("new down");
+  }
+  console.log(game);
+
+  // 方法二
+  let youxi = {
+    name: '狼人杀',
+    [Symbol('say')]: function () {
+      console.log('我可以发言');
+    },
+    [Symbol('quit')]: function () {
+      console.log('我可以投降');
+    }
+  }
+  console.log(youxi);
+
+</script>
+
+</html>

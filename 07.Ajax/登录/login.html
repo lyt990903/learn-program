@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>registe</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script src="./js/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/overlayer.css">
+    <link rel="stylesheet" href="./css/successTip.css">
+</head>
+
+<body>
+    <div class="box login-box">
+        <form class="form login-form">
+            <h1>Welcome</h1>
+            <input class="txtb l-user" type="text" placeholder="Username">
+            <input class="txtb l-pwd" type="text" placeholder="Password">
+            <input class="btn show-registe-btn" type="button" value="registe">
+            <input class="btn login-btn" type="button" value="Login">
+        </form>
+    </div>
+
+    <div class="box registe-box">
+        <div class="hide-registe-btn"><i class="fa fa-close"></i></div>
+        <form class="form registe-form">
+            <h1>Registe</h1>
+            <input class="txtb r-user" type="text" placeholder="Username">
+            <div class="status-icon"></div>
+            <input class="txtb r-pwd" type="text" placeholder="Password">
+            <div class="status-icon"></div>
+            <input class="registe-btn" type="button" value="registe">
+        </form>
+    </div>
+
+    <div class="overlayer">
+        <div class="loading">
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+        </div>
+    </div>
+
+    <div class="successTip">
+        <h2>success</h2>
+    </div>
+</body>
+<script>
+    $(function () {
+        $(".overlayer").hide();
+        $(".show-registe-btn").on("click", function () {
+            $(".registe-box").toggleClass("showed");
+        })
+        $(".hide-registe-btn").on("click", function () {
+            $(".registe-box").toggleClass("showed");
+        })
+        //登录按钮
+        $(".login-btn").on("click", function () {
+            $(".overlayer").show();
+            $.ajax({
+                url: "./php/login_check.php",
+                type: "POST",
+                data: {
+                    loginUser: $(".l-user").val(),
+                    loginPwd: $(".l-pwd").val()
+                },
+                success: function (data) {
+                    $(".overlayer").hide();
+                    console.log(data);
+                    showTip(data.message);
+                    if (data.status == 1) {
+                        //console.log("登录成功");
+                    }
+                }
+            });
+        });
+        //检查注册--用户名
+        $(".r-user").blur(function () {
+            $.ajax({
+                url: "./php/registe_check.php",
+                type: "POST",
+                data: {
+                    checkUsername: $(".r-user").val(),
+                    which: "username"
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.status == 1) {
+                        //console.log("可以注册");
+                        $(".status-icon:nth-child(3)").html("<div class='status-icon'><i class='fa fa-check-circle'></i></div>");
+                    }
+                    else{
+                        $(".status-icon:nth-child(3)").html("<div class='status-icon'><i class='fa fa-exclamation-circle'></i></div>");
+                    }
+                }
+            });
+        });
+        //检查注册--密码
+        $(".r-pwd").blur(function () {
+            $.ajax({
+                url: "./php/registe_check.php",
+                type: "POST",
+                data: {
+                    checkPwd: $(".r-pwd").val(),
+                    which: "password"
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.status == 1) {
+                        //console.log("可以注册");
+                        $(".status-icon:nth-child(5)").html("<div class='status-icon'><i class='fa fa-check-circle'></i></div>");
+                    }
+                    else{
+                        $(".status-icon:nth-child(5)").html("<div class='status-icon'><i class='fa fa-exclamation-circle'></i></div>");
+                    }
+                }
+            });
+        });
+        //注册按钮
+        $(".registe-btn").on("click", function () {
+            $(".overlayer").show();
+            $.ajax({
+                url: "./php/registe_insert.php",
+                type: "POST",
+                data: {
+                    registeUser: $(".r-user").val(),
+                    registePwd: $(".r-pwd").val()
+                },
+                success: function (data) {
+                    $(".overlayer").hide();
+                    console.log(data);
+                    showTip(data.message);
+                    if (data.status == 10) {
+                        $(".registe-box").toggleClass("showed");                       
+                        //console.log("创建成功");
+                    }
+                }
+            });
+        });
+
+        function showTip(string) {
+            $(".successTip").text(string);
+            $(".successTip").toggleClass("tipShow");
+            setTimeout(function () {
+                $(".successTip").toggleClass("tipShow");
+            }, 1500);
+        }
+    })
+</script>
+
+</html>

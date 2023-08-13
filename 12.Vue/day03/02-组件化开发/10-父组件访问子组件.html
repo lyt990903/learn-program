@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref="aaa"></cpn>
+    <button @click="btnClick">按钮</button>
+  </div>
+
+  <template id="cpn">
+    <h2>子组件</h2>
+  </template>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+
+      },
+      methods: {
+        btnClick() {
+          // 方法一：$children —— 数组，获取加载出来的子组件列表，从而调用子组件的方法，获取子组件的数据
+          // 缺点：根据索引获取，不灵活
+          console.log(this.$children);
+          console.log(this.$children[0].message);
+          this.$children[0].showMessage();
+          
+          // 方法二：$refs —— 对象，需要为加载的子组件标签加上ref属性，一一对应进行获取，使用较多
+          console.log(this.$refs);
+          console.log(this.$refs.aaa.message);
+          this.$refs.aaa.showMessage();
+        }
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              message: "获取了子组件的数据"
+            }
+          },
+          methods: {
+            showMessage(){
+              console.log("调用到了子组件的方法");
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

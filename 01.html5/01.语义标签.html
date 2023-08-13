@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            height: 100px;
+            background: hotpink;
+        }
+
+        nav {
+            width: 100%;
+            height: 50px;
+            background: yellowgreen;
+        }
+
+        main {
+            width: 100%;
+            height: 500px;
+        }
+
+        article {
+            width: 70%;
+            height: 100%;
+            float: left;
+            background: skyblue;
+        }
+
+        aside {
+            width: 30%;
+            height: 100%;
+            float: right;
+            background: sandybrown
+        }
+
+        footer {
+            width: 100%;
+            height: 150px;
+            background: tomato
+        }
+    </style>
+</head>
+
+<body>
+    <header class="div">这里是头部</header>
+    <nav class="div">这里是导航</nav>
+    <main>
+        <article class="div">
+            主界面文章部分
+        </article>
+        <aside class="div">
+            主界面侧边栏
+        </aside>
+    </main>
+    <footer class="div">这里是尾部</footer>
+</body>
+
+</html>

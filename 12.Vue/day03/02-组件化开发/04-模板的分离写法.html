@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<div class="app">
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+
+<!-- 1. 使用text/x-template类型的script标签 -->
+<script type="text/x-template" id="myCpn1">
+  <div>
+    <h2>我是标题1</h2>
+    <p>哈哈哈哈哈</p>
+  </div>
+</script>
+
+<!-- 2. 使用template标签 -->
+<template id="myCpn2">
+  <div>
+    <h2>我是标题2</h2>
+    <p>呵呵呵呵呵</p>
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+  Vue.component('cpn1',{
+    template: '#myCpn1'
+  });
+  Vue.component('cpn2',{
+  template: '#myCpn2'
+  });
+
+  const app = new Vue({
+    el: '.app',
+    data: {
+      
+    }
+  });
+</script>
+</body>
+
+</html>

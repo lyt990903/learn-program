@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=vue, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- 单选 -->
+    <label for="man">
+      <input type="checkbox" id="lience" v-model="isAgree">同意
+    </label>
+    <button :disabled="!isAgree">下一步</button>
+    <!-- 多选 -->
+    <label for="apple">
+      <input type="checkbox" v-model="list" value="苹果">苹果
+    </label>
+    <label for="banana">
+      <input type="checkbox" v-model="list" value="香蕉">香蕉
+    </label>
+    <label for="grape">
+      <input type="checkbox" v-model="list" value="葡萄">葡萄
+    </label>
+    <h4>您选择的是:{{list}}</h4>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        isAgree: false,
+        list: []
+      }
+    });
+  </script>
+</body>
+
+</html>

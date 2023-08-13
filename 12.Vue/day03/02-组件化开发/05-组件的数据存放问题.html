@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+
+  <!-- 组件无法使用root组件的方法和数据 -->
+  <template id="myCpn">
+    <div>
+      <h2>公共计数：{{commonCounter.counter}}</h2>
+      <h2>独自计数：{{counter}}</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">+</button>
+    </div>
+  </template>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const commonCounter = {
+      counter: 0
+    }
+
+    Vue.component('cpn', {
+      template: '#myCpn',
+      // 组件的data要求为一个函数
+      // 在多次复用时，函数返回的实例是一个实例一个，如果是一个对象的话会导致多个实例共用一个data
+      data() {
+        return {
+          counter: 0,
+          commonCounter
+        }
+      },
+      methods: {
+        increment() {
+          this.commonCounter.counter++;
+          this.counter++;
+        },
+        decrement() {
+          this.commonCounter.counter--;
+          this.counter--;
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '.app',
+      data: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+@color: red;
+
+.itany {
+    width: 200px;
+    height: 200px;
+    border: 1px solid @color;
+}
+
+.hello {
+    width: 100px;
+    height: 100px;
+    border: 1px dashed @color;
+}
+
+div {
+    width: 100px;
+    height: 100px;
+}
+
+//选择器
+@selector: c1;
+
+.@{selector} {
+    background: hotpink;
+}
+
+#@{selector} {
+    background: yellowgreen;
+}
+
+//url变量
+@imgPath: "../images/";
+
+.c2 {
+    background: url('@{imgPath}img.jpg');
+}
+
+//属性变量
+@prop: color;
+
+.c3 {
+    @{prop}: black;
+    background-@{prop}: #CCC;
+}
+
+//变量的嵌套
+@inside: #262626;
+@outside: @inside;
+/*
+@inside: #262626;
+@outside: inside;
+*/
+
+.c4 {
+    background-color: @outside;
+    //background-color: @@outside;
+}
+
+//延迟加载（先使用，后定义）
+.c5{
+    background-color: @too;
+    @other:green;
+}
+@too: @other;
+@other:red;
+//最总显示green
+
+
+/*
+    总结
+    1. 除了简单变量之后，其他变量在调用时都需要加{ }。
+    2. 建议先声明再使用，变量声明放在代码的最前面。
+*/

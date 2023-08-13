@@ -1,0 +1,53 @@
+.d1 {
+  color: red;
+}
+.d1 > .d2 {
+  background-color: yellow;
+}
+.navigation {
+  background-color: #CCC;
+}
+.navigation h1 {
+  font-size: 50px;
+}
+.navigation p {
+  color: red;
+}
+.navigation a {
+  text-decoration: none;
+  background-color: bisque;
+}
+.navigation a:hover {
+  text-decoration: underline;
+  background-color: #ffcd91;
+}
+.parent1,
+.child1,
+.child2,
+.child3 {
+  background-color: red;
+}
+.child1 {
+  color: yellowgreen;
+}
+.child2 {
+  color: hotpink;
+}
+.parent2,
+.child3 {
+  font-size: 40px;
+}
+.aa,
+.part,
+.all {
+  color: red;
+}
+.dd .aa,
+.dd .all {
+  font-size: 40px;
+}
+.aa:hover,
+.all:hover {
+  background-color: hotpink;
+}
+/*# sourceMappingURL=./05.css.map */

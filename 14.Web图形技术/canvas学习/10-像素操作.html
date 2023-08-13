@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <style>
+    .color {
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    /*
+      ImageData对象：ImageData对象中存储着Canvas对象真实的像素数据，它包含以下几个只读属性
+      width：图片宽度，单位是像素
+      height：图片高度，单位是像素
+      data：Unit8ClampeArray类型的一维数组，包含着RGBA格式的整形数据，范围在(0,255]之间
+      data属性返回一个Unit8ClampeArray，它可以被使用作为查看初始像素数据。每个像素用4个1bytes值(按照红(1)、绿(2)、蓝(3)、透明值(4)的顺序)
+      每个部分被分配到一个在数组内连续的索引，左上角像素的红色部分在数组的索引0位置。像素从左到右被处理，然后往下，遍历整个数组。
+      Unit8ClampeArray：包含高度×宽度×4bytes数据，索引值从0到(高度×宽度×4)-1
+    */
+
+    /*
+      例如：要读取图片中位于第50行，第200列的像素的蓝色部分
+      blueComponent = imageData.data[((50-1)*imageData.width + (200-1))*4 - 1 + 3];
+      根据行、列读取某像素点的R/G/B/A值得公式：
+      imageData.data[((行数-1)*imageData.width + (列数-1))*4 - 1 + 1/2/3/4];
+      读取像素数组的大小(以bytes为单位)：
+      imageData.data.length
+    */
+
+    /*
+      创建一个ImageData对象
+      createImageData(width,height)：创建一个新的具有特定尺寸的imageData对象。所有像素被预设为透明黑。
+      createImageData(anotherImageData)：创建一个被anotherImageData对象指定的相同像素的ImageData对象。这个新的对象像素全部被预设为透明黑。这个并非复制了图片数据。
+    */
+
+    /*
+      得到场景像素数据
+      getImageData(left,top,width,height)方法
+      返回一个ImageData对象，它代表了画布区域的对象数据，此画布的四个角落分别表示为(left,top)，(left+wdith,top)，(left,top+height)，(left+width,top+hieght)四个点，这些坐标点被设定为画布坐标空间元素
+      画布以外的元素返回一个透明黑的ImageData对象
+    */
+
+    /*
+      颜色选择器
+    */
+    function drawColorPicker() {
+      let colorDiv = document.createElement('div');
+      colorDiv.innerHTML = "颜色拾取";
+      colorDiv.className = "color"
+      document.body.appendChild(colorDiv);
+
+      let img = new Image();
+      img.src = "./images/test.png";
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+      const color = document.querySelector('.color');
+      canvas.addEventListener('mousemove', function (e) {
+        let x = e.layerX;
+        let y = e.layerY;
+        let pixel = ctx.getImageData(x, y, 1, 1);
+        let data = pixel.data;
+        let rgba = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
+        color.style.color = rgba;
+      });
+    };
+    //drawColorPicker();
+
+    /*
+      在场景中写入像素数据
+      putImageData(myImageData,dx,dy)：使用putImageData方法对场景进行像素数据的写入
+      dx和dy参数表示你希望在场景内左上角绘制的像素数据所得到的设备坐标
+
+      例如：在场景左上角绘制myImageData代表的图片
+      putImageData(myImageData,0,0);
+    */
+
+    /*
+      图片灰度和反相颜色
+    */
+    function drawPutImageData() {
+      let invertBtn = document.createElement('button');
+      let grayscaleBtn = document.createElement('button');
+      invertBtn.innerHTML = "反相颜色";
+      invertBtn.id = "invertbtn";
+      grayscaleBtn.innerHTML = "图片灰度";
+      grayscaleBtn.id = "grayscalebtn";
+      document.body.appendChild(invertBtn);
+      document.body.appendChild(grayscaleBtn);
+
+      let img = new Image();
+      img.src = "./images/test.png";
+      img.onload = function () {
+        draw(this);
+      }
+
+      let draw = function (img) {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+
+        let invert = function () {
+          for (let i = 0; i < data.length; i += 4) {
+            data[i] = 255 - data[i]; // red
+            data[i + 1] = 255 - data[i + 1]; // green
+            data[i + 2] = 255 - data[i + 2]; // blue
+          }
+          ctx.putImageData(imageData, 0, 0);
+        }
+
+        let grayscale = function () {
+          for (let i = 0; i < data.length; i += 4) {
+            let avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            data[i] = avg;
+            data[i + 1] = avg;
+            data[i + 2] = avg;
+          }
+          ctx.putImageData(imageData, 0, 0);
+        }
+
+        invertBtn.addEventListener('click', invert);
+        grayscaleBtn.addEventListener('click', grayscale);
+      }
+    }
+    //drawPutImageData();
+
+    /*
+      缩放和反锯齿
+      通过imageSmoothingEnabled属性开启反锯齿。默认开启。
+    */
+    function drawZoomAndSmooth() {
+      let zoomCanvas = document.createElement('canvas');
+      zoomCanvas.id = "zoom";
+      document.body.appendChild(zoomCanvas);
+      let label = document.createElement('label');
+      let checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = "checkBtn";
+      label.appendChild(checkbox);
+      label.innerHTML += "是否开启抗锯齿";
+      document.body.appendChild(label);
+      let checkBtn = document.getElementById('checkBtn');
+      checkBtn.checked = true;
+
+      let img = new Image();
+      img.src = "./images/test.png";
+      img.onload = function () {
+        draw(this);
+      }
+
+      let draw = function (img) {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        let zoomctx = zoomCanvas.getContext('2d');
+
+        checkBtn.addEventListener('change', function (e) {
+          // 兼容性
+          zoomctx.imageSmoothingEnabled = this.checked;
+          zoomctx.mozImageSmoothingEnabled = this.checked;
+          zoomctx.webkitImageSmoothingEnabled = this.checked;
+          zoomctx.msImageSmoothingEnabled = this.checked;
+        })
+
+        let zoom = function (e) {
+          let x = event.layerX;
+          let y = event.layerY;
+          zoomctx.drawImage(canvas, Math.abs(x - 5), Math.abs(y - 5), 10, 10, 0, 0, 200, 200);
+        }
+
+        canvas.addEventListener('mousemove', zoom);
+      }
+    }
+    //drawZoomAndSmooth();
+
+    /*
+      保存图片
+      canvas.toDataURL('...')：默认设定。创建一个png图片
+      canvas.toDataURL('...',quality)：创建一个JPG图片。你可以有选择地提供从0(低品质)到1(高品质)的品质量
+      canvas.toBlob(callback,type,encoderOptions)：创建一个在画布中的代表图片的Blob对象
+    */
+  </script>
+</body>
+
+</html>

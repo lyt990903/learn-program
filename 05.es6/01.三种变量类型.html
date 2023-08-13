@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+</head>
+
+<body>
+
+    <!-- 作用域问题
+    <script>
+        // function scope(函数作用域)，在函数中定义为局部变量，在函数外定义为全局变量
+        // var 可重复定义和修改
+        var a = 200;
+        var a = 100;
+        a = 50;
+        console.log(a);
+
+        // block scope(块级作用域)，在代码块中定义为局部变量，在代码块外定义为全局变量
+        // let 可重复修改，不可重复定义
+        let b = 200;
+        // let b = 300;
+        b = 50
+        console.log(b);
+
+        // block scope(块级作用域)，在代码块中定义为局部变量，在代码块外定义为全局变量
+        // const 不可重复修改，不可重复定义
+        const c = 200;
+        // const c = 100;
+        // c = 50;
+        console.log(c);
+
+        function test() {
+            var funcA = 250;
+            let funcB = 250;
+            const funcC = 250;
+        }
+        test();
+        // console.log(funcA);
+        // console.log(funcB);
+        // console.log(funcC);
+
+        if (true) {
+            var blockA = 240;
+            let blockB = 240;
+            const blockC = 240;
+        }
+        console.log(blockA);
+        // console.log(blockB);
+        // console.log(blockC);
+    </script>
+    循环
+    <script>
+        for (var i = 0; i < 10; i++) {
+            console.log(i)
+            setTimeout(function(){
+                console.log(i);
+                // 输出10个10，因为settimeout添加至异步堆栈，1秒后var已经变成10了
+            },1000)
+        }
+
+        for(let i=0;i<10;i++){
+            setTimeout(function(){
+                console.log(i);
+            })
+        }
+    </script> -->
+
+    <script>
+        // const sum = function () {
+        //     return Array.from(arguments).reduce((prevSum, value) => prevSum + value, 0);
+        // }
+        // const a = typeof x;
+        // console.log(a);
+        // let x;
+        // var tmp = new Date();
+        //     debugger;
+
+        // function f(){            
+        //     console.log(tmp);
+        //     // var tmp = "hello Bug";
+        // }
+
+        // f();
+        // let a = function f(){
+        //     return 1;
+        // }
+        // console.log(a);
+        // (function(){
+        //     if(false){
+        //         let a = function f(){
+        //             return 2;
+        //         }
+        //         console.log(a);
+
+        //     }
+        //     else{
+        //         let a = () => {
+        //             console.log(3);
+        //         }
+        //         console.log(a);
+
+        //     }
+
+        // }())
+
+        // const list = [
+        //     1,2,3,4,5
+        // ];
+
+        // const newlist = list.map((item,index) => (
+        //     `<li>${item}</li>`
+        // ))
+        // console.log(newlist);
+
+        // class App {
+        //     constructor() {
+        //         this.f.bind(this.a);
+        //     }
+
+        //     a = "123";
+        //     f(data) {
+        //         console.log(this, data);
+        //     }
+        // }
+
+        // let app = new App();
+        // app.f(" ");
+
+        
+    </script>
+</body>
+
+</html>

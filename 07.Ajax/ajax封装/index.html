@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script src="./ajax.js"></script>
+</head>
+
+<body>
+    <input type="button" class="ajax" value="ajax请求">
+    <input type="button" class="xml" value="xml请求">
+    <input type="button" class="json" value="json请求">
+</body>
+<script>
+    document.querySelector(".ajax").onclick = function () {
+        Ajax_({
+            url: "./php/data.php",
+            type: "GET",
+            data: "food=西兰花&name=小兔子",
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
+    document.querySelector(".xml").onclick = function () {
+        Ajax_({
+            url: "./php/sendXML.php",
+            type: "POST",
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
+
+    document.querySelector(".json").onclick = function () {
+        Ajax_({
+            url: "./php/sendJSON.php",
+            type: "GET",
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        for (var i = 0; i < 380; i++) {
+            var span = document.createElement("span");
+            $(".container").append(span);
+        }
+
+        $("span").mouseover(function () {
+            ele = $(this);
+            ele.addClass("shake");
+            timer = setTimeout("add(ele)", 500);
+        })
+        $("span").mouseout(function () {
+            $(this).removeClass("shake");
+            clearTimeout(timer);
+        })
+
+        function add(ele) {
+            if(ele.hasClass("shake")){
+                ele.removeClass("shake");
+            }
+            ele.addClass("fall");
+        }
+    </script>
+</body>
+
+</html>

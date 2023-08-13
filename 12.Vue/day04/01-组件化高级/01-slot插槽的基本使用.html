@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- 
+      1. 可以在slot中设定默认的内容
+      2. 可以用多个标签替换slot中的内容
+     -->
+    <cpn>
+      <button>按键</button>
+    </cpn>
+    <!--  -->
+    <cpn></cpn>
+    <!--  -->
+    <cpn>
+      <i>呵呵呵</i>
+      <b>呵呵呵</b>
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>我是标题</h2>
+      <p>哈哈哈哈哈</p>
+      <!-- 插槽用于将组件中发生变换的部分进行灵活的替换 -->
+      <slot>
+        <!-- 默认值，可不设置 -->
+        <button>按钮</button>
+      </slot>
+    </div>
+  </template>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+
+      },
+      components: {
+        cpn: {
+          template: '#cpn'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

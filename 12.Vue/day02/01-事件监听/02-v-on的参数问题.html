@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- 无参数的方法可以加括号，也可以不加 -->
+    <button @click="btnClick1()">1</button>
+    <button @click="btnClick1">1</button>
+    <!-- 需要参数但调用时不加括号，默认传入event对象 -->
+    <button @click="btnClick2">2</button>
+    <!-- 想要手动传入event对象，需要使用$event -->
+    <button @click="btnClick3('123',$event)">3</button>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        btnClick1() {
+          console.log('btn1 is clicked');
+        },
+        btnClick2(e) {
+          console.log('----', e);
+        },
+        btnClick3(arg1, e) {
+          console.log('----', arg1, e);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

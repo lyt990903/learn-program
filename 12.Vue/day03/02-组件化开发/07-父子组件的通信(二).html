@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 子组件--$emit Events--》父组件 -->
+  <div class="app">
+    <!-- 绑定子组件参送数据触发方法 -->
+    <cpn @btnclick="cpnClick"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+     <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+    </div>
+  </template>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      data() {
+        return {
+          categories: [{
+              id: 'aaa',
+              name: "热门推荐"
+            },
+            {
+              id: 'bbb',
+              name: "家用电器"
+            },
+            {
+              id: 'ccc',
+              name: "手机数码"
+            },
+            {
+              id: 'ddd',
+              name: "生活用品"
+            },
+          ]
+        }
+      },
+      methods: {
+        btnClick(item) {
+          // 向父组件发送事件，(事件名, 参数)
+          this.$emit('btnclick', item);
+        }
+      }
+    }
+
+    const app = new Vue({
+      el: '.app',
+      data: {
+        list: ['the first', 'the second', 'the third'],
+        title: '我是标题'
+      },
+      components: {
+        cpn
+      },
+      methods: {
+        cpnClick(item) {
+          console.log(item);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const ctx = document.getElementById('canvas').getContext('2d');
+    /*
+      引入图像到canvas中需要两步基本操作
+      1.获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片
+      2.使用drawImage()函数将图片绘制到画布上
+    */
+
+    /*
+      获得需要绘制的图片
+      HTMLImageElement：这些图片是由Image()函数构造出来的，或者任何的<img>元素
+      HTMLVideoElement：用一个HTML的<video>元素作为你的图片源，可以从视频中抓取当前帧作为一个图像
+      HTMLCanvasElement：可以使用另一个<canvas>元素作为你的图片源。
+      ImageBitmap：这是一个高性能的位图，可以低延迟地绘制，它可以从上述的所有源以及其它几种源中生成。
+      这些源统一由CanvasImageSource类型来引用
+    */
+
+    /*
+      使用相同页面内的图片
+      document.images集合
+      document.getElementByTagName()方法
+      等等
+
+      使用其他域名下的图片
+      在HTMLImageElement上使用crossOrigin属性，你可以请求加载其它域名上的图片
+
+      使用其他canvas元素
+      最常用的应用便是将第二个canvas作为另一个大的canvas的缩略图
+    */
+    function drawImg(){
+      var img = new Image();
+      img.onload = function(){
+        // 执行drawImage()语句
+      }
+      img.src = 'url';
+    }
+
+    /*
+      绘制图片
+      drawImage(image,x,y)
+      其中image为image或者canvas对象，x和y是其在目标canvas里的起始坐标
+    */
+    function drawIamges(){
+      let img = new Image();
+      img.onload = function(){
+        ctx.drawImage(img,0,0);
+        ctx.beginPath();
+        ctx.moveTo(55,40);
+        ctx.lineTo(55,50);
+        ctx.lineTo(60,50);
+        ctx.lineTo(60,60);
+        ctx.stroke();
+      }
+      img.src = "https://developer.mozilla.org/@api/deki/files/58/=Canvas_backdrop.png";
+    }
+    //drawIamges();
+
+    /*
+      缩放Scaling
+      drawImage(image,x,y,width,height):width和height两个参数用来控制当向canvas画入时应该缩放的大小
+    */
+    function drawScalingImg() {
+      let img = new Image();
+      img.onload = function(){
+        for(let i = 0;i<3;i++){
+          for(let j=0;j<3;j++){
+            ctx.drawImage(img,i*50,j*50,50,50);
+          }
+        }
+      }
+      img.src = 'https://mdn.mozillademos.org/files/5397/rhino.jpg';
+    }
+    //drawScalingImg();
+
+    /*
+      切片Slicing
+      drawImage(image,sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight)
+      sx,sy,sWidth,sHeight规定了相对于原图片以sx,sy为左上角，截取宽为sWidth高为sHeight的图片
+      dx,dy,dWidth,dHeight就如同之前的x,y,width,height
+    */
+
+    /*
+      控制图像的缩放行为Controlling image scaling behavior
+      mozImageSmoothingEnabled属性，值为false时，图像不会平滑地缩放。默认是true
+    */
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>模板引擎</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+</head>
+
+<body>
+
+</body>
+<script src="./template-web.js"></script>
+<!-- type不写或写成text/javascript，会被解析成js
+如果写成其他类型，不会被当成js解析 
+此处写成html是为了高亮-->
+<script type="text/html" id="template">
+    <ul>
+        <li>名字：{{name}}</li>
+        <li>技能：{{skill}}</li>
+        <li>爱好：{{habbit}}</li>
+    </ul>
+</script>
+<script>
+    var data = {
+        name: "小明",
+        skill: "写作文",
+        habbit: "请求援助"
+    };
+    //参数1：模板的id
+    //参数2：填充的数据
+    var res = template('template', data);
+    console.log(res);
+    document.body.innerHTML = res;
+</script>
+
+</html>

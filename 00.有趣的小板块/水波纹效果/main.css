@@ -1,0 +1,11 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.full-landing-image{
+    width: 100%;
+    height: calc(100vh);
+    background: url(./bg.jpg) no-repeat center center;
+    background-size: cover;
+}

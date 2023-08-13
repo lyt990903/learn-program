@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>3D流</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="./swiper.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgBx"></div>
+                <div class="details">
+                    <h3>title</h3>
+                    <span>details</span>
+                </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <script src="./swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflow: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            }
+        });
+    </script>
+</body>
+
+</html>

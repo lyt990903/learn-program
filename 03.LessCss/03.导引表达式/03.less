@@ -1,0 +1,34 @@
+//始终赋予的属性
+
+
+//满足条件赋予的属性
+.div(@font-size) when(@font-size < 20) {
+    font-size: unit(@font-size, px);
+    color: red;
+}
+
+.div(@font-size) when(@font-size >=20) and (@font-size <=40) {
+    font-size: unit(@font-size, px);
+    color: yellow;
+}
+
+.div(@font-size) when(@font-size > 40) {
+    font-size: unit(@font-size, px);
+    color: green;
+}
+
+.div {
+    width: 100px;
+    height: 100px;
+    background-color: #363636;
+}
+
+.d1 {
+    .div;
+    .div(15);
+}
+
+.d2 {
+    .div;
+    .div(41);
+}

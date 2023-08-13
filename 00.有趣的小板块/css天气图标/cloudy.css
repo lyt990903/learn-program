@@ -1,0 +1,49 @@
+.cloudy:before,
+.rainy:before,
+.snowy:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow:
+        #fff 22px -15px 0 6px,
+        #fff 57px -6px 0 2px,
+        #fff 87px 4px 0 -4px,
+        #fff 33px 6px 0 6px,
+        #fff 61px 6px 0 2px,
+        #ccc 29px -23px 0 6px,
+        #ccc 64px -14px 0 2px,
+        #ccc 94px -4px 0 -4px;
+    z-index: 2;
+}
+
+.cloudy:before {
+    -webkit-animation: cloudMove 2s linear infinite;
+    -moz-animation: cloudMove 2s linear infinite;
+    -o-animation: cloudMove 2s linear infinite;
+    animation: cloudMove 2s linear infinite;
+}
+
+@keyframes cloudMove {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, -60%);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}

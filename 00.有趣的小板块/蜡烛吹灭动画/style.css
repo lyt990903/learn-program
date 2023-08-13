@@ -1,0 +1,49 @@
+body {
+
+	background-color: #fff;
+	animation: change-background 3s infinite linear;
+}
+
+.wrapper {
+	position: absolute;
+	left: 50%;
+	top: 70%;
+	transform: scale(1.5 1.5) translate(-50%, -50%);
+}
+
+.floor {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 350px;
+	height: 9px;
+	background: #673c63;
+	transform: translate(-50%, -50%);
+	box-shadow: 0px 2px 5px #111;
+	z-index: 2;
+}
+
+.candles {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 250px;
+	height: 150px;
+	transform: translate(-50%, -100%);
+	z-index: 1;
+}
+
+.candle1 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 35px;
+	height: 100px;
+	background: #fff;
+	border: 3px solid #5c3a5b;
+	border-bottom: 0;
+	border-radius: 3px;
+	transform-origin: center right;
+	transform: translate(60%, -25%);
+  box-shadow: -2px 0 0 #95c6f2 inset;
+}

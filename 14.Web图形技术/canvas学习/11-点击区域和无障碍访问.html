@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <!-- 
+    内容兼容
+    canvas标签中的内容被可以对一些不支持canvas的浏览器提供兼容。
+    他们可以读取并解释DOM里的子节点。
+   -->
+  <canvas>
+    <h2>Shapes</h2>
+    <p>
+      A rectangle with a black border.
+      <a href="http://www.baidu.com">baidu</a>
+    </p>
+  </canvas>
+
+  <!-- 
+     ARIA规则
+     Accessible Rich Internet Applications(ARIA)定义了让Web应用更容易被无兼容性的浏览器获取的办法。
+     可以用ARIA属性来描述canvas元素的行为和存在目的
+    -->
+  <canvas id="button" tabindex="0" role="button" aria-pressed="false" aria-label="Start game"></canvas>
+
+  <!-- 
+      点击区域（hit region）
+      判断鼠标坐标是否在canvas上一个特定区域里。
+      hit region API
+      CanvasRenderingContext2D.addHitRegion()：在canvas上添加一个点击区域
+      CanvasRenderingContext2D.removeHitRegion()：从canvas上移除指定id的点击区域
+      CanvasRenderingContext2D.clearHitRegion()：移除canvas上所有点击区域
+     -->
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(70, 80, 10, 0, Math.PI * 2, false);
+    ctx.fill();
+    ctx.addHitRegion({
+      id: 'circle'
+    });
+    canvas.addEventListener('mousemove', function (e) {
+      if (e.region) {
+        alert("hit region:" + e.region);
+      }
+    });
+  </script>
+
+  <!-- 
+    焦点圈
+    CanvasRenderingContext2D.drawFocusIfNeeded()
+    如果给定的元素获得了焦点，这个方法会沿着在当前的路径画个焦点圈
+
+    scrollPathIntoView()方法可以让一个元素获得焦点的时候在屏幕上可见(滚动到元素所在的区域)
+    
+    CanvasRenderingContext2D.scrollPathIntoView()
+    把当前的路径或者一个给定的路径滚动到电视区域内
+   -->
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <!-- <script>
+      // 对异步编程产生结果
+        function* Mygenerator() {
+            console.log("Hello1");
+            let first = yield 'first pause';
+            console.log(first);
+            console.log("Hello2");
+            let second = yield 'second pause';
+            console.log(second);
+            console.log("Hello3");
+            let third = yield 'third pause';
+            console.log(third);
+        }
+
+        let generator = Mygenerator();
+        console.log(generator.next());
+        // next方法可以传入参数，第二个next函数参数作为第一个yield语句的返回结果
+        console.log(generator.next('a'));
+        console.log(generator.next('b'));
+        console.log(generator.next());
+    </script> -->
+  <!-- <script>
+    // 实例一
+
+    // 回调地狱
+    // setTimeout(() => {
+    //   console.log(111);
+    //   setTimeout(() => {
+    //     console.log(222);
+    //     setTimeout(() => {
+    //       console.log(333);
+    //     }, 3000);
+    //   }, 2000);
+    // }, 1000);
+
+    // 生成器函数
+    function first() {
+      setTimeout(() => {
+        console.log(111);
+        iterator.next();
+      }, 1000)
+    }
+
+    function second() {
+      setTimeout(() => {
+        console.log(222);
+        iterator.next();
+      }, 2000)
+    }
+
+    function third() {
+      setTimeout(() => {
+        console.log(333);
+        iterator.next();
+      }, 3000)
+    }
+
+    function* gen() {
+      yield first();
+      yield second();
+      yield third();
+    }
+    let iterator = gen();
+    iterator.next();
+  </script> -->
+  <script>
+    // 实列二
+    function getUser() {
+      setTimeout(() => {
+        let data = "用户数据";
+        iterator.next(data);
+      }, 1000)
+    }
+
+    function getOrder(data) {
+      setTimeout(() => {
+        let orderData = "订单数据";
+        iterator.next(orderData);
+      }, 1000)
+    }
+
+    function getGoods(data) {
+      setTimeout(() => {
+        let goodsData = "商品数据";
+        iterator.next(goodsData);
+      }, 1000)
+    }
+
+    function* gen() {
+      let userData = yield getUser();
+      console.log(userData);
+      let orderData = yield getOrder(userData);
+      console.log(orderData);
+      let goodsData = yield getGoods(orderData);
+      console.log(goodsData);
+    }
+    let iterator = gen();
+    iterator.next();
+  </script>
+</body>
+
+</html>

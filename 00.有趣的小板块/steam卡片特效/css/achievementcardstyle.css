@@ -1,0 +1,27 @@
+.achievementcard-container {
+  width: 142px;
+  height: 165px;
+}
+
+.achievementcard-container .out-scale {
+  width: 100%;
+  height: 100%;
+  transition: all .3s ease;
+  transform-style: preserve-3d;
+}
+
+.achievementcard-container .card {
+  background-image: url(../images/achievement\ image.png);
+  border-radius: 5px;
+  border: 2px solid black;
+  transition: transform .0001ms linear;
+  transition: box-shadow .2s ease;
+}
+
+.achievementcard-container .out-scale:hover {
+  transform: scale(1.5);
+}
+
+.achievementcard-container .card:hover {
+  box-shadow: 0 0 40px 0 black;
+}

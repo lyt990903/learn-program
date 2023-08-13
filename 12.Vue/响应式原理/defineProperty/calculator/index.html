@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+    <style>
+      .btn-group button.current {
+        background-color: orange;
+        color: #fff;
+      }
+    </style>
+	</head>
+	<body>
+		<div id="J-calculator">
+			<div class="result">0</div>
+			<div class="input-group">
+				<input type="text" value="0" class="f-input" /><br>
+				<input type="text" value="0" class="s-input" />
+			</div>
+			<div class="btn-group">
+				<button data-field="plus" class="current">+</button>
+				<button data-field="minus">-</button>
+				<button data-field="mul">*</button>
+				<button data-field="div">/</button>
+			</div>
+		</div>
+
+		<script src="./main.js"></script>
+	</body>
+</html>

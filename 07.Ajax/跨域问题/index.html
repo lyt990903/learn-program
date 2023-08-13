@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+</head>
+
+<body>
+<!-- 
+    不同源之间互相访问称为跨域，浏览器默认不允许跨域
+    协议：http
+    域名：127.0.0.1
+    端口：80（默认）
+    三者有一个不同即为不同源
+ -->
+</body>
+<script>
+    function doSomething(data){
+        console.log(data);
+    }
+</script>
+<script src="./dataBack.php?callback=doSomething"></script>
+</html>

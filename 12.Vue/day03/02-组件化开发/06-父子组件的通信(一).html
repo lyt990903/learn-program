@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 父组件--pass props--》子组件 -->
+  <div class="app">
+    <!-- 为子组件绑定父组件的数据 -->
+    <cpn :c-list="list" :ctitle="title"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>{{ctitle}}</h2>
+      <ul>
+        <li v-for="item in cList">{{item}}</li>
+      </ul>
+    </div>
+  </template>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      data() {
+        return {}
+      },
+      // 注意驼峰命名时
+      // 1. 数组方式
+      // props: ['clist', 'ctitle']
+
+      // 2. 对象方式(指定类型)
+      // props: {
+      //   clist: Array,
+      //   ctitle: String
+      // }
+
+      // 3. 对象方式+约束条件
+      props: {
+        cList: {
+          type: Array, // 类型约束
+          default () { // 默认值（数组、对象默认值要求为一个函数）
+            return []
+          },
+          required: true // 是否为必须的
+        },
+        ctitle: {
+          type: String
+        }
+      }
+    }
+
+    const app = new Vue({
+      el: '.app',
+      data: {
+        list: ['the first', 'the second', 'the third'],
+        title: '我是标题'
+      },
+      components: {
+        cpn
+      }
+    });
+  </script>
+</body>
+
+</html>

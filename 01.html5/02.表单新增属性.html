@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+</head>
+
+<body>
+    <form action="">
+        文本：<input type="text" name="" id="userName"><br>
+        密码：<input type="password" name="" id=""><br>
+        邮箱：<input type="email" name="" id=""><br>
+        电话：<input type="tel" name="" id="userPhone" pattern="^1\d{10}$"><br><!-- 不提供验证，但可以在移动端弹出数字键盘 -->
+        网址：<input type="url" name="" id=""><br>
+        数量：<input type="number" name="" id="" max="10" min="10"><br>
+        搜索：<input type="search" name="" id=""><br>
+        范围：<input type="range" name="" id="" max="100" min="0" value="75"><br>
+        颜色：<input type="color" name="" id=""><br>
+        日期：<input type="date" name="" id=""><br><!--大多数浏览器不支持-->
+        日时：<input type="datetime" name="" id=""><br>
+        时间：<input type="time" name="" id=""><br>
+        月份：<input type="month" name="" id=""><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+<script>
+    // 内容改变时触发
+    document.getElementById("userName").oninput = function(){
+        console.log(this.value);
+    }
+    // 不通过验证时触发
+    document.getElementById("userPhone").oninvalid = function(){
+        // 设置默认提示信息
+        this.setCustomValidity("请输入11位的电话号码");
+        console.log("请输入11位的电话号码");
+    }
+</script>
+</html>

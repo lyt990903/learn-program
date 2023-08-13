@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const ctx = document.getElementById('canvas').getContext('2d');
+    /*
+      globalCompositionOperation
+      我们不仅可以在已有图形后面再画新图形，还可以用来遮盖指定区域，清除画布中的某些部分
+      (清除区域不仅限于矩形，向clearRect()方法做的那样已经更多其他操作)
+      globalCompositeOperation = type
+      这个属性设定了在画新图形时采用的遮盖策略，其值是一个标识12种遮盖方式的字符串
+    */
+
+    /*
+      图像合成
+      source-over：默认设置。在现有画布上下文之上绘制新图形
+      source-in：新图形只在新图形和目标画布重叠的地方绘制，其他的都是透明的
+      source-out：在不与现有画布内容重叠的地方绘制新图形
+      source-atop：新图形只在与现有画布内容重叠的地方绘制
+      destination-over：在现有的画布内容后面绘制新的图形
+      destination-in：现有的画布内容保持在新图形和现有画布内容重叠的位置，其他都是透明的
+      destination-out：现有内容保持在新图形不重叠的地方
+      destination-atop：现有的画布只保留与新图形重叠的部分，新的图形是在画布内容后面绘制的
+      。。。。等等
+      https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Compositing
+    */
+    function drawCompositing() {
+      ctx.fillRect(0, 0, 150, 150);
+      ctx.globalCompositeOperation = "source-in";
+      ctx.fillStyle = "#000";
+      ctx.beginPath();
+      ctx.arc(75, 75, 40, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    //drawCompositing();
+
+    /*
+      裁切路径
+      和路径类似，在路径闭合区内的图形显示，区外的图形隐藏
+      clip()：将当前正在构建的路径转换为当前的裁剪路径
+      使用clip()方法来构建一个新的裁切路径，用法与fill()和stroke()类似
+      默认情况下，cavas有一个与它自身一样大的裁切路径(也就是没有裁切效果)
+    */
+    function darwStar(ctx, r) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(r, 0);
+      //ctx.rotate(Math.floor(1 + Math.random() * 71) * 5);
+      for (let i = 0; i < 9; i++) {
+        ctx.rotate(Math.PI / 5);
+        if (i % 2 == 0) {
+          ctx.lineTo((r / 0.525731) * 0.200811, 0);
+        } else {
+          ctx.lineTo(r, 0);
+        }
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    function drawClip() {
+      ctx.fillRect(0, 0, 150, 150);
+      ctx.translate(75, 75);
+
+      ctx.beginPath();
+      ctx.arc(0, 0, 60, 0, Math.PI * 2, true);
+      ctx.clip();
+
+      let lingrad = ctx.createLinearGradient(0, -75, 0, 75);
+      lingrad.addColorStop(0, '#232256');
+      lingrad.addColorStop(1, '#143778');
+      ctx.fillStyle = lingrad;
+      ctx.fillRect(-75, -75, 150, 150);
+
+      for (let i = 0; i < 50; i++) {
+        ctx.save();
+        ctx.fillStyle = '#fff';
+        ctx.translate(75 - Math.floor(Math.random() * 150), 75 - Math.floor(Math.random() * 150));
+        darwStar(ctx, Math.floor(2 + Math.random() * 4));
+      }
+    }
+    //drawClip();
+  </script>
+</body>
+
+</html>

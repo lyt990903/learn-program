@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: hotpink;
+    }
+
+    li {
+      list-style: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in movies" @click="doActive(index)" :class="{active: index === current}">{{item}}</li>
+    </ul>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        current: 0,
+        movies: ['the first', 'the second', 'the third', 'the forth']
+      },
+      methods: {
+        doActive: function (index) {
+          this.current = index;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

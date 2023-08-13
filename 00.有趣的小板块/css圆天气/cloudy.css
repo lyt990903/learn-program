@@ -1,0 +1,77 @@
+.cloudy {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    display: block;
+    position: relative;
+    font-size: -webkit-calc(11em);
+    font-size: calc(11em);
+    width: 1em;
+    height: 1em;
+    margin: .3em;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 0 0 0.05em currentColor inset, 0 0 0.3em -0.03em #c9e8de;
+    box-shadow: 0 0 0 0.05em currentColor inset, 0 0 0.3em -0.03em #c9e8de;
+    background: -webkit-gradient(linear, from(#1b9ce2), to(#e0e2e5));
+    background: -webkit-linear-gradient(top right, #1b9ce2 0%, #e0e2e5 90%);
+    background: linear-gradient(to top right, #1b9ce2 0%, #e0e2e5 90%);
+}
+
+.cloud {
+    position: absolute;
+    top: .1em;
+    left: 65%;
+    width: .37em;
+    height: .13em;
+    border-radius: .1em;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 0.1em 0.02em #f0f2f0 inset, 0 0 0.3em -0.03em #c9e8de;
+    box-shadow: 0 0 0.1em 0.02em #f0f2f0 inset, 0 0 0.3em -0.03em #c9e8de;
+    -webkit-animation: move 3000ms infinite ease-in-out;
+    animation: move 3000ms infinite ease-in-out;
+}
+
+.cloud+.cloud {
+    top: 25%;
+    left: 40%;
+    -webkit-animation: move 3700ms infinite linear;
+    animation: move 3700ms infinite linear;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: inherit;
+    border-radius: inherit;
+    background-color: inherit;
+    -webkit-box-shadow: inherit;
+    box-shadow: inherit;
+    bottom: 30%;
+}
+
+.cloud::before {
+    left: .05em;
+    width: .2em;
+    height: .2em;
+}
+
+.cloud::after {
+    left: .15em;
+    width: .15em;
+    height: .15em;
+}
+
+@-webkit-keyframes move {
+    50% {
+        -webkit-transform: translateX(-0.05em);
+        transform: translateX(-0.05em);
+    }
+}
+
+@keyframes move {
+    50% {
+        -webkit-transform: translateX(-0.05em);
+        transform: translateX(-0.05em);
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Robot</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <h1>图灵机器人</h1>
+  <div class="container">
+    <div class="message">
+      <div class="robot clearfix">
+        <a href="#" class="f_l">机</a>
+        <p class="f_l">你好</p>
+      </div>
+    </div>
+    <div class="control">
+      <input type="text" class="inputBox f_l">
+      <input type="button" class="sendButton f_r" value="发 送">
+    </div>
+  </div>
+
+  <!-- 隐藏的 自己聊天框 -->
+  <div id="hidden_self" class="self clearfix" style="display:none">
+    <a href="#" class="f_r">人</a>
+    <p class="f_r">内容</p>
+  </div>
+</body>
+
+</html>
+<script src="./js/jquery.min-1.72.js"></script>
+<script>
+  $(function () {
+        $(".sendButton").click(function () {
+          //发送显示自己的消息
+          var cloneSelf = $(".self").first().clone();
+          cloneSelf.appendTo($(".message"));
+          cloneSelf.show();
+          cloneSelf.find("p").text($(".inputBox").val());
+          $(".inputBox").val("");
+          //document.querySelector('.message').scrollTop = document.querySelector('.message').scrollHeight;
+
+          //ajax请求
+          var xhr = new XMLHttpRequest();
+          xhr.open("post", 'http://www.tuling123.com/openapi/api');
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onload = function () {
+            var cloneRobot = $(".robot").first().clone();
+            cloneRobot.appendTo($(".message"));
+            cloneRobot.find("p").text(xhr.responseText);
+          }
+          xhr.send("key=87c031661b8b404e820b3c41ea648962&info=" + $(".inputBox").val());
+          document.querySelector('.message').scrollTop = document.querySelector('.message').scrollHeight;
+        })
+
+        $(window).keydown(function(e) {
+          var $curKey = e.which;
+          if ($curKey == 13) {
+              //发送显示自己的消息
+              var $cloneSelf = $(".self").first().clone();
+              $cloneSelf.appendTo($(".message"));
+              $cloneSelf.show();
+              $cloneSelf.find("p").text($(".inputBox").val());
+              $(".inputBox").val("");
+              //document.querySelector('.message').scrollTop = document.querySelector('.message').scrollHeight;
+              
+              //ajax请求
+              var xhr = new XMLHttpRequest();
+              xhr.open("post", 'http://www.tuling123.com/openapi/api');
+              xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhr.onload = function () {
+                var $cloneRobot = $(".robot").first().clone();
+                $cloneRobot.appendTo($(".message"));
+                $cloneRobot.find("p").text(xhr.responseText);
+                document.querySelector('.message').scrollTop = document.querySelector('.message').scrollHeight;
+              }
+              xhr.send("key=87c031661b8b404e820b3c41ea648962&info=" + $(".inputBox").val());  
+          }
+        })
+  })
+</script>

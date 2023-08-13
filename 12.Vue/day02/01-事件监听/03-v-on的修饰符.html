@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- .stop - 调用event.stopPropagation阻止冒泡 -->
+    <div @click="divClick">
+      <button @click.stop="btn1Click">按钮1</button>
+    </div>
+    <!-- .prevent - 调用event.preventDefault阻止默认事件 -->
+    <form action="baidu">
+      <input type="submit" value="提交" @click.prevent="submitClick">
+    </form>
+    <!-- .{keyCode|keyAlias} - 只当时间是从特定建触发时才触发回调 -->
+    <input type="text" @keyup.enter="btn2Click">
+    <!-- .native - 监听组件根元素的原生事件 -->
+    <!-- .once - 只触发一次回调 -->
+    <button @click.once="btn3Click">按钮3</button>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+
+      },
+      methods: {
+        btn1Click() {
+          console.log('btn1 is clicked');
+        },
+        divClick() {
+          console.log('div is clicked');
+        },
+        submitClick() {
+          console.log('submit is clicked');
+        },
+        btn2Click() {
+          console.log('btn2 is clicked');
+        },
+        btn3Click() {
+          console.log('btn3 is clicked');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

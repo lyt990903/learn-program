@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- 响应式：监听数据变化，变化后重新渲染，数组不是所有方法都是响应式的 -->
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+    <button @click="btnClick">改变</button>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        letters: ['A', 'B', 'C', 'D', 'E']
+      },
+      methods: {
+        btnClick() {
+          // 1.push方法：在数组最后面添加一个(多个)元素 响应式
+          // this.letters.push('F');
+          // 2. pop方法：删除数组中的最后一个元素 响应式
+          // this.letters.pop();
+          // 3.shift方法：删除数组中的第一个元素 响应式
+          // this.letters.shift();
+          // 4.unshift方法：在数组最前面添加一个(多个)元素 响应式
+          // this.letters.unshift('F');
+          // 5.splice方法：插入，删除，修改 (开始位置, 删除个数(默认删除除第一个外的所有元素), 替换的内容...args) 响应式
+          // this.letters.splice(2, 3, 'F', 'G', 'H');
+          // 6.sort方法：排序 响应式
+          // this.letters.sort();
+          // 7.reverse方法：反转 响应式
+          // this.letters.reverse();
+
+          // 8.通过索引值修改数组中的元素 非响应式
+          // this.letters[0] = 'bbb';
+          // Vue提供修改方法：set(要修改的对象，索引值， 修改后的值)
+          // Vue.set(this.letters, 0, 'bbb');
+
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

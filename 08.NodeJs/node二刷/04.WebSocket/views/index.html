@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<input type="text" id="input" />
+		<button id="btn">发送</button>
+
+		<script>
+			const username = `test${Math.random()}`;
+			let input = document.getElementById("input");
+			let btn = document.getElementById("btn");
+			const ws = new WebSocket("ws://localhost:9077?id=test1");
+			ws.onopen = () => {
+				alert("前端连接服务器成功");
+			};
+
+			btn.addEventListener("click", () => {
+				ws.send(
+					JSON.stringify({
+						username: username,
+						message: input.value
+					})
+				);
+			});
+
+			ws.onmessage = objString => {
+        console.log(objString.data)
+				const obj = JSON.parse(objString.data);
+				alert(obj.username + " ：" + obj.message);
+			};
+
+			ws.onclose = () => {
+				alert("后台服务器关闭");
+			};
+		</script>
+	</body>
+</html>

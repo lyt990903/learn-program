@@ -1,0 +1,14 @@
+{
+  "bookstore": {
+    "book": {
+      "-category": "",
+      "title": {
+        "-lang": "",
+        "#text": "Harry Potter"
+      },
+      "author": "JK.Rowing",
+      "year": "2005",
+      "price": "29.99"
+    }
+  }
+}

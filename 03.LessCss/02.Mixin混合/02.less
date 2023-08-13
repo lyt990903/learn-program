@@ -1,0 +1,70 @@
+/*
+Mixin语法
+    .name(@parm1:default,@param2:default,...){
+        prop1:@param1;
+        prop2:@parm2;   
+    }
+
+    .user{
+        .name(...,...,...);
+        全部使用默认值 .name;
+    }
+*/
+
+//简单混合，不带参数
+.div {
+    width: 100px;
+    height: 100px;
+}
+
+.d1 {
+    .div;
+    background-color: bisque;
+}
+
+.d2 {
+    .div;
+    background-color: aquamarine;
+}
+
+//带参数混合
+#setColor(@color) {
+    color: @color;
+}
+
+.d1 {
+    #setColor(hotpink);
+}
+
+#setSize(@width, @height) {
+    width: @width;
+    height: @height;
+}
+
+.d2 {
+    #setSize(150px, 150px);
+}
+
+//参数默认值
+.setColumn(@columns:100px 3, @column-fill:auto,@column-gap:5px,@column-rule:2px solid red) {
+    -webkit-columns: @columns;
+    -moz-columns: @columns;
+    columns: @columns;
+    -webkit-column-fill: @column-fill;
+    -moz-column-fill: @column-fill;
+    column-fill: @column-fill;
+    -webkit-column-gap: @column-gap;
+    -moz-column-gap: @column-gap;
+    column-gap: @column-gap;
+    -webkit-column-rule: @column-rule;
+    -moz-column-rule: @column-rule;
+    column-rule: @column-rule;
+}
+
+.d3{
+    width: 400px;
+    height: 100px;
+    background-color: beige;
+    //.setColumn(100px 3, balance, 5px, 2px solid red);
+    .setColumn;//使用默认参数
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+
+  <!-- <script>
+        function Interator(arr) {
+            // 记录指针位置
+            let InteratorIndex = 0;
+            return {
+                next: function () {
+                    return InteratorIndex < arr.length?{value:arr[InteratorIndex++],done:false}:{value:undefined,done:true};
+                }
+            }
+        }
+
+        let arr = [1, 2, 3, 4, 5];
+        let interatorObj = Interator(arr);
+        console.log(interatorObj.next());
+        // console.log(interatorObj);
+        console.log(interatorObj.next());
+        // console.log(interatorObj);
+        console.log(interatorObj.next());
+        // console.log(interatorObj);
+        console.log(interatorObj.next());
+        console.log(interatorObj.next());
+        console.log(interatorObj.next());
+        console.log(interatorObj.next());
+        console.log(interatorObj.next());
+    </script> -->
+  <!-- <script>
+        myTest = (...value) => {
+            for (let item of value) {
+                console.log(item);
+            }
+            for (let item in value) {
+                console.log(item);
+            }
+        }
+
+        function func(arr) {
+            for (let i of arguments) {
+                console.log(i);
+            }
+            for (let i in arguments) {
+                console.log(i);
+            }
+        }
+
+        let string = "asd";
+        for (let i of string) {
+            console.log(i);
+        }
+        for (let i in string) {
+            console.log(i);
+        }
+        // myTest([1,2,3,4]);
+        let arr = [1, 2, 3, 4];
+        func(arr);
+    </script> -->
+  <!-- <script>
+        let arr1 = [1,6];
+        let arr2 = [2,3,4,5];
+        arr1 = [1,...arr2,6];
+        console.log(arr1);
+
+        func = (...props) => {
+            console.log(props);
+        }
+
+        func([{name:'zhangsan'},5]);
+        func({name:'zhangsan'},5);
+
+    </script> -->
+  <script>
+    let weapoons = {
+      from: 'hades',
+      list: [
+        'jian',
+        'mao',
+        'dun',
+        'quan',
+        'gong'
+      ],
+      [Symbol.iterator]() {
+        let index = 0;
+        return {
+          next: () => {
+            if (index < this.list.length) {
+              const res = {
+                value: this.list[index],
+                done: false
+              }
+              index++;
+              return res;
+            } else {
+              return {
+                value: undefined,
+                done: true
+              }
+            }
+          }
+        }
+      }
+    }
+
+    for (let v of weapoons) {
+      console.log(v);
+    }
+  </script>
+</body>
+
+</html>

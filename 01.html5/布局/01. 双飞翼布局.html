@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-width: 600px;
+    }
+    .container {
+      width: 100%;
+      height: 200px;
+    }
+    .column {
+      float: left;
+      height: 100%;
+    }
+    .center {
+      width: 100%;
+      overflow: hidden;
+      background-color: red;
+      box-sizing: border-box;
+      padding: 0 300px;
+      overflow-wrap: break-word;/*文字自动换行*/
+    }
+    .left {
+      width: 300px;
+      margin-left: -100%;
+      background-color: green;
+    }
+    .right {
+      width: 300px;
+      margin-left: -300px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <!-- 两侧固定宽度，中间部分宽度自适应 -->
+  <!-- 高度不固定时需要消除浮动 -->
+  <div class="container">
+    <div class="column center">
+      <p>start-dasdasdasdasdasdasdasdasdsdadasdasdsadasdasdfasghghdgfhdfgjdfdsadasdfdsgdsfgsdfgsdf-end</p>
+    </div>
+    <div class="column left"></div>
+    <div class="column right"></div>
+  </div>
+  <div class="main" style="width: 100%;height: 100px;background-color: antiquewhite;"></div>
+</body>
+</html>

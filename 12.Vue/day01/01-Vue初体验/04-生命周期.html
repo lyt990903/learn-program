@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+
+  <div class="app">
+    <h2>{{counter}}</h2>
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        add: function () {
+          this.counter++;
+        },
+        sub: function () {
+          this.counter--;
+        }
+      },
+      // 生命周期函数（hook：钩子函数）
+      beforeCreate: function () { // 创建前状态
+        console.log("beforeCreate:" + this.$el, this._data);
+      },
+      created: function () { // 创建完毕状态
+        console.log("created:" + this.$el, this._data);
+      },
+      beforeMount: function () { // 挂载前状态
+        console.log("beforeMount:" + this.$el, this._data);
+      },
+      mounted: function () { // 挂载结束状态
+        console.log("mounted:" + this.$el, this._data);
+      },
+      beforeUpdate: function () { // 挂载完成后状态更新前状态
+        console.log("beforeUpdate:" + this.$el, this._data);
+      },
+      updated: function () { // 挂载完成后状态更新后状态
+        console.log("updated:" + this.$el, this._data);
+      },
+      beforeDestory: function () { // 实例销毁前状态
+        console.log("beforeDestory:" + this.$el, this._data);
+      },
+      destroyed: function () { // 实例销毁后状态
+        console.log("destroyed:" + this.$el, this._data);
+      }
+    });
+  </script>
+</body>
+
+</html>

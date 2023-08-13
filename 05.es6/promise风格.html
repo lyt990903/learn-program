@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+
+  <!-- <script>
+    function getAjax(url) {
+      // 定义promise对象
+      let promise = new Promise((resolve, reject) => {
+        // 发送ajax请求
+        var xhr = new XMLHttpRequest();
+        console.log(xhr.readyState);
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status == 200) { // 请求成功
+              console.log(xhr.responseText);
+              resolve(); // 修改promise状态为成功
+            } else { // 请求失败
+              console.log("请求失败！")
+              reject(); // 修改promise状态为失败
+            }
+          }
+        }
+        xhr.open("GET", url);
+
+      })
+
+      // 返回promise
+      return promise;
+    }
+
+    // 使用getAjax方法
+    getAjax("https://cm.bilibili.com/cm/api/receive/content/pc").then(
+      // 成功时进入
+      (data) => {
+        console.log("成功了！");
+      },
+      // 失败时进入
+      (error) => {
+        console.log("失败了！");
+      }
+    );
+  </script> -->
+  <script>
+    // 链式调用
+    const getUser = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let userData = "用户数据";
+        resolve(userData);
+      }, 2000);
+    });
+
+    getUser.then(data => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          let orderData = "订单数据";
+          resolve(data + orderData);
+        }, 2000);
+      })
+    }).then(data => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          let goodsData = "商品数据";
+          resolve(data + goodsData);
+        }, 1000);
+      })
+    }).then(data => {
+      console.log(data);
+    })
+  </script>
+</body>
+
+</html>

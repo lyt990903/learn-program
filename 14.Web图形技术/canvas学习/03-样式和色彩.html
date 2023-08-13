@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+</head>
+
+<body>
+  <canvas id="canvas" width="200" height="200"></canvas>
+
+  <!-- 色彩 -->
+  <script>
+    const ctx = document.getElementById('canvas').getContext('2d');
+    /*
+      色彩：绘笔的颜色
+      fillStyle = color(字符串)：设置图形的填充色彩
+      strokeStyle = color(字符串)：设置图形的轮廓颜色
+    */
+    function drawFillColor() {
+      // 填充颜色
+      let ctx = document.getElementById('canvas').getContext('2d');
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+          ctx.fillStyle = `rgb(${Math.floor(255-42.5*i)},${Math.floor(255-42.5*j)},0)`;
+          ctx.fillRect(j * 25, i * 25, 25, 25);
+        }
+      }
+    }
+    //drawFillColor();
+    function drawStrokeColor() {
+      // 轮廓颜色
+      let ctx = document.getElementById('canvas').getContext('2d');
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+          ctx.strokeStyle = `rgb(0,${Math.floor(255-42.5*j)},${Math.floor(255-42.5*i)})`;
+          ctx.beginPath();
+          ctx.arc(12 + i * 24, 12 + j * 24, 10, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+    }
+    //drawStrokeColor();
+
+    /*
+      透明度
+      globalAlpha = transparencyValue
+      这个属性影响到canvas里所有图形的透明度，有效的值范围是0.0(完全透明)到1.0(不透明)，默认是1.0
+      也可利用fillStyle和strokeStyle影响透明度rgba()
+    */
+    function drawAlpha() {
+      let ctx = document.getElementById('canvas').getContext('2d');
+      // 矩形北京
+      ctx.fillStyle = '#FD0';
+      ctx.fillRect(0, 0, 75, 75);
+      ctx.fillStyle = '#6C0';
+      ctx.fillRect(75, 0, 75, 75);
+      ctx.fillStyle = '#09F';
+      ctx.fillRect(0, 75, 75, 75);
+      ctx.fillStyle = '#F30';
+      ctx.fillRect(75, 75, 75, 75);
+      ctx.fillStyle = '#FFF';
+      // 绘制环形透明圈
+      for (let i = 0; i < 7; i++) {
+        // 设置透明度
+        ctx.globalAlpha = 0.7 - i * 0.1;
+        ctx.beginPath();
+        ctx.arc(75, 75, 10 + i * 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    //drawAlpha();
+    function drawRGBA() {
+      ctx.fillStyle = 'rgb(255,221,0)';
+      ctx.fillRect(0, 0, 150, 37.5);
+      ctx.fillStyle = 'rgb(102,204,0)';
+      ctx.fillRect(0, 37.5, 150, 37.5);
+      ctx.fillStyle = 'rgb(0,153,255)';
+      ctx.fillRect(0, 75, 150, 37.5);
+      ctx.fillStyle = 'rgb(255,51,0)';
+      ctx.fillRect(0, 112.5, 150, 37.5);
+      for (var i = 0; i < 10; i++) {
+        ctx.fillStyle = 'rgba(255,255,255,' + (i + 1) / 10 + ')';
+        for (var j = 0; j < 4; j++) {
+          ctx.fillRect(5 + i * 14, 5 + j * 37.5, 14, 27.5)
+        }
+      }
+    }
+    //drawRGBA();
+  </script>
+
+  <!-- 样式 -->
+  <script>
+    /*
+      线型 Line styles：可以通过一系列属性来设置线的样式
+      lineWidth = value：设置线条宽度
+      lineCap = type：设置线条末端样式
+      lineJoin = type：设定线条与线条间接合处的样式
+      miterLimit = value：限制当两条线相交时交接处最大长度；所谓交界处长度(斜接长度)是指线条交接处内角顶点到外角顶点的长度
+      getLineDash()：返回一个包含当前虚线样式，长度为非负偶数的数组
+      setLineDash(segments)：设置当前虚线样式
+      lineDashOffset = value：设置虚线样式的起始偏移量      
+    */
+
+    /*
+      lineWidth属性值必须为正，默认值为1。
+      可以看出线条边缘清晰度不同，当加粗后的线条两边和canvas坐标网格重叠时边缘清晰；当不重叠时会进行近似渲染导致边缘模糊
+    */
+    function drawLineWidth() {
+      for (let i = 0; i < 10; i++) {
+        ctx.lineWidth = 1 + i;
+        ctx.beginPath();
+        ctx.moveTo(4 + i * 14, 0);
+        ctx.lineTo(4 + i * 14, 150);
+        ctx.stroke();
+      }
+    }
+    //drawLineWidth();
+
+    /*
+      lineCap属性分为：
+      butt：正常
+      round：端点为半圆
+      square：端点延长半个线宽
+      三种，默认为butt
+    */
+    function drawLineCap() {
+      let lineCaps = ['butt', 'round', 'square'];
+      // 辅助线
+      ctx.strokeStyle = "skyblue";
+      ctx.beginPath();
+      ctx.moveTo(10, 10);
+      ctx.lineTo(140, 10);
+      ctx.moveTo(10, 140);
+      ctx.lineTo(140, 140);
+      ctx.stroke();
+      // 画线
+      ctx.strokeStyle = "black";
+      for (let i = 0; i < 3; i++) {
+        ctx.lineWidth = 15;
+        ctx.lineCap = lineCaps[i];
+        ctx.beginPath();
+        ctx.moveTo(15 + i * 50, 10);
+        ctx.lineTo(15 + i * 50, 140);
+        ctx.stroke();
+      }
+    }
+    //drawLineCap();
+
+    /*
+      lineJoin属性可以是：
+      round：边角处被磨圆
+      bevel：不做任何处理
+      miter：在连接处外侧延伸直至交于一点，延伸效果受miterLimit属性影响
+      miterLimit：设定外延交点与连接点的最大距离，如果焦点距离大于此值，连接效果会变成bevel
+      三种之一，默认为miter
+    */
+    function drawLineJoin() {
+      let lineJoins = ['round', 'bevel', 'miter'];
+      ctx.lineWidth = 10;
+      for (let i = 0; i < 3; i++) {
+        ctx.lineJoin = lineJoins[i];
+        ctx.beginPath();
+        ctx.moveTo(-5, 5 + i * 40);
+        ctx.lineTo(35, 45 + i * 40);
+        ctx.lineTo(75, 5 + i * 40);
+        ctx.lineTo(115, 45 + i * 40);
+        ctx.lineTo(155, 5 + i * 40);
+        ctx.stroke();
+      }
+    }
+    //drawLineJoin();
+
+    /*
+      使用虚线
+      setLineDash方法接受一个数组，来指定线段与间隙的交替；
+      lineDashOffset属性设置起始偏移量
+    */
+    var offset = 0;
+
+    function drawDash() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.setLineDash([4, 2]);
+      ctx.lineDashOffset = -offset;
+      ctx.strokeRect(10, 10, 100, 100);
+    }
+
+    function march() {
+      offset++;
+      if (offset > 16) {
+        offset = 0;
+      }
+      drawDash();
+      setTimeout(march, 200);
+    }
+    //march();
+  </script>
+
+  <!-- 其他样式 -->
+  <script>
+    /*
+      渐变Geadients：我们可以用线性或者径向的渐变来填充或描边
+      用方法新建一个canvasGradient对象，并且赋给图形的fillStyle或strokeStyle属性
+      createLinearGradient(x1,y1,x2,y2)：渐变的起点x1，y1与终点x2，y2
+      createRadialGradient(x1,y1,r1,x2,y2,r2)：前三个参数定义一个以x1，y1为原点，半径为r1的圆；后三个参数定义另一个以x2，y2为原点，半径为r2的圆
+      
+      // var lineargradient = ctx.createLinearGradient(0,0,150,150);
+      // var radialgradient = ctx.createRadialGradient(75,75,0,75,75,100);
+      
+      创建出canvasGradient对象后，可以用addColorStop方法上色
+      gradient.addColorStop(position,color)
+      position参数必须是0.0与1.0之间的数值，表示渐变中颜色所在的相对位置。
+      color参数必须是一个有效的CSS颜色值
+
+      // var lineargradient = ctx.createLinearGradient(0,0,150,150);
+      // lineargradient.addColorStop(0,'white');
+      // lineargradient.addColorStop(1,'black');
+    */
+    function drawLinearGradient() {
+      // 线性渐变
+      let lingrad = ctx.createLinearGradient(0, 0, 0, 150);
+      lingrad.addColorStop(0, "#00ABEB");
+      lingrad.addColorStop(0.5, "#fff");
+      lingrad.addColorStop(0.5, "#26C000");
+      lingrad.addColorStop(1, "#fff");
+
+      let lingrad2 = ctx.createLinearGradient(0, 50, 0, 95);
+      lingrad2.addColorStop(0.5, "#000");
+      lingrad2.addColorStop(1, "rgba(255,255,255)");
+
+      ctx.fillStyle = lingrad;
+      ctx.strokeStyle = lingrad2;
+
+      ctx.fillRect(10, 10, 130, 130);
+      ctx.strokeRect(50, 50, 50, 50);
+    }
+    //drawLinearGradient();
+    function drawRadialGradient() {
+      // 径向渐变
+      let radgrad1 = ctx.createRadialGradient(45, 45, 5, 52, 50, 30);
+      radgrad1.addColorStop(0, '#A7D30C');
+      radgrad1.addColorStop(0.9, '#019F62');
+      radgrad1.addColorStop(1, 'rgba(1,159,98,0)');
+
+      let radgrad2 = ctx.createRadialGradient(105, 105, 20, 112, 120, 50);
+      radgrad2.addColorStop(0, '#FF5F98');
+      radgrad2.addColorStop(0.75, '#FF0188');
+      radgrad2.addColorStop(1, 'rgba(255,1,136,0)');
+
+      let radgrad3 = ctx.createRadialGradient(95, 15, 15, 102, 20, 40);
+      radgrad3.addColorStop(0, '#00C9FF');
+      radgrad3.addColorStop(0.8, '#00B5E2');
+      radgrad3.addColorStop(1, 'rgba(0,201,255,0)');
+
+      let radgrad4 = ctx.createRadialGradient(0, 150, 50, 0, 140, 90);
+      radgrad4.addColorStop(0, '#F4F201');
+      radgrad4.addColorStop(0.8, '#E4C700');
+      radgrad4.addColorStop(1, 'rgba(228,199,0,0)');
+
+      // 画图形
+      ctx.fillStyle = radgrad4;
+      ctx.fillRect(0, 0, 150, 150);
+      ctx.fillStyle = radgrad3;
+      ctx.fillRect(0, 0, 150, 150);
+      ctx.fillStyle = radgrad2;
+      ctx.fillRect(0, 0, 150, 150);
+      ctx.fillStyle = radgrad1;
+      ctx.fillRect(0, 0, 150, 150);
+    }
+    //drawRadialGradient();
+
+    /*
+      图案样式Patterns
+      createPattern(image,type)
+      image可以是一个image对象的引用，或者另一个canvas对象。type必须是如下字符串值之一：【repeat重复覆盖、repeat-xX方向上重复、repeat-yY方向上重复、no-repeat不重复】
+    */
+    function drawPattern() {
+      let img = new Image();
+      img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+      img.onload = function () {
+        let canvas = document.getElementById('canvas');
+        let ptrn = ctx.createPattern(img, 'repeat');
+        ctx.fillStyle = ptrn;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    //drawPattern();
+
+    /*
+      阴影Shadows
+      shadowOffsetX = float
+      shadowOffsetY = float
+      shadowOffsetX和shadowOffsetY来设定阴影在X和Y轴的延伸距离。默认为0
+      shadowBlur = float
+      shadowBlur用于设定阴影的模糊程度，默认为0
+      shadowColor = color
+      shadowColor是标准的CSS颜色，用于设定阴影的颜色，默认为全透明的黑色 
+    */
+    function drawShadow() {
+      ctx.font = "20px Times New Roman";
+      ctx.fillStyle = "black";
+
+      ctx.shadowOffsetX = 5;
+      ctx.shadowOffsetY = 5;
+      ctx.shadowBlur = 2;
+      ctx.shadowColor = "#CCC";
+
+      ctx.fillText("Sample String", 20, 20);
+    }
+    //drawShadow();
+
+    /*
+      Canvas填充规则
+      使用fill时可以选择一个填充规则
+      该填充规则根据某处在路径的外面或者里面来决定该处是否被填充
+      这对于自己与自己路径相交或者路径被嵌套时有用
+      "nonzero":直接覆盖(默认)、"evenodd":相交次数为奇数时叠加，相交次数为偶数时消除
+    */
+    function drawFillRule() {
+      ctx.beginPath();
+      ctx.arc(50, 50, 30, 0, Math.PI * 2, true);
+      ctx.arc(50, 50, 15, 0, Math.PI * 2, true);
+      ctx.arc(50, 50, 5, 0, Math.PI * 2, true);
+      ctx.fill("evenodd");
+    }
+    drawFillRule();
+  </script>
+</body>
+
+</html>

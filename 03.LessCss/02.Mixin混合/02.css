@@ -1,0 +1,51 @@
+/*
+Mixin语法
+    .name(@parm1:default,@param2:default,...){
+        prop1:@param1;
+        prop2:@parm2;   
+    }
+
+    .user{
+        .name(...,...,...);
+        全部使用默认值 .name;
+    }
+*/
+.div {
+  width: 100px;
+  height: 100px;
+}
+.d1 {
+  width: 100px;
+  height: 100px;
+  background-color: bisque;
+}
+.d2 {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+}
+.d1 {
+  color: hotpink;
+}
+.d2 {
+  width: 150px;
+  height: 150px;
+}
+.d3 {
+  width: 400px;
+  height: 100px;
+  background-color: beige;
+  -webkit-columns: 100px 3;
+  -moz-columns: 100px 3;
+  columns: 100px 3;
+  -webkit-column-fill: auto;
+  -moz-column-fill: auto;
+  column-fill: auto;
+  -webkit-column-gap: 5px;
+  -moz-column-gap: 5px;
+  column-gap: 5px;
+  -webkit-column-rule: 2px solid red;
+  -moz-column-rule: 2px solid red;
+  column-rule: 2px solid red;
+}
+/*# sourceMappingURL=./02.css.map */

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<section class="banner">
+			<div class="container">
+				<div id="scene">
+					<h2 id="text">
+						<span data-depth-y="2">s</span>
+						<span data-depth-y="-6">u</span>
+						<span data-depth-y="5">m</span>
+						<span data-depth-y="-8">m</span>
+						<span data-depth-y="-3">e</span>
+						<span data-depth-y="6">r</span>
+					</h2>
+          <div class="layer"><img src="./images/png/img1.png"></div>
+          <div class="layer"><img src="./images/png/img2.png"></div>
+          <div class="layer"><img src="./images/png/img3.png"></div>
+          <div class="layer"><img src="./images/png/img4.png"></div>
+          <div class="layer"><img src="./images/png/img5.png"></div>
+          <div class="layer"><img src="./images/png/img6.png"></div>
+          <div class="layer"><img src="./images/png/img7.png"></div>
+				</div>
+			</div>
+		</section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+		<script>
+			var text = document.getElementById("text");
+			var parallaxInstance = new Parallax(text);
+		</script>
+	</body>
+</html>

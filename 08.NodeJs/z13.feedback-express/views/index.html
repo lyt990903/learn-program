@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+</head>
+
+<body>
+    <h1>首页</h1>
+    <a href="/form">发表评论</a>
+    {{each comments}}
+        <li>
+            <p>{{$value.name}}:</p>
+            <p>{{$value.message}}</p>
+            <p>{{$value.dateTime}}</p>
+        </li>
+    {{/each}}
+</body>
+
+</html>

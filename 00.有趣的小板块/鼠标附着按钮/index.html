@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <a href="" class="button">NMD</a>
+  <a href="" class="button">WSM</a>
+  <a href="" class="button">ZSW</a>
+
+  <script>
+    document.body.style.cursor = 'none';
+    let cursor = document.createElement('div');
+    cursor.classList.add('cursor');
+    document.body.appendChild(cursor);
+    let follow = document.createElement('div');
+    follow.classList.add('follow');
+    document.body.appendChild(follow);
+    function move(obj, e) {
+      obj.style = '';
+      obj.style.top = e.clientY + 'px';
+      obj.style.left = e.clientX + 'px';
+    }
+    if (cursor) {
+      window.addEventListener('mousemove', function (e) {
+        var t = e.target;
+        if (t.tagName == 'A') {
+          cursor.style.backgroundColor = 'transparent';
+          follow.style.top = t.offsetTop + 'px';
+          follow.style.left = t.offsetLeft + 'px';
+          follow.style.width = t.clientWidth + 'px';
+          follow.style.height = t.clientHeight + 'px';
+          follow.classList.add('on-focus');
+        } else {
+          move(cursor, e);
+          move(follow, e);
+          follow.classList.remove('on-focus');
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

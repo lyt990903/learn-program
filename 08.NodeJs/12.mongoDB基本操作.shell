@@ -1,0 +1,111 @@
+// 1.进入my_test数据库
+use my_test
+
+// 2.向数据库的user集合中插入一个文档
+db.users.insert({
+    username:"sunwukong"
+})
+
+// 3.查询user集合中的文档
+db.users.find()
+
+// 4.向数据库的user集合中插入一个文档
+db.users.insert({
+    username:"zhubajie"
+})
+db.users.save([{
+    username:"zhubajie"
+}])
+
+// 5.查询数据库user集合中的文档
+db.users.find()
+
+// 6.统计数据库user集合中的文档
+db.users.find().count()
+
+// 7.查询数据库user集合中username为sunwukong的文档
+db.users.find({username:"sunwukong"})
+
+// 8.向数据库user集合中的username为sunwukong的文档，添加一个address属性，属性值为huaguoshan
+db.users.update({username:"sunwukong"},{$set:{address:"huaguoshan"}})
+db.users.find({username:"sunwukong"})
+
+// 9.使用{username：“tangseng”} 替换username为zhubajie的文档
+db.users.update({username:"zhubajie"},{$set:{username:"tangseng"}})
+
+// 10.删除username为孙悟空的文档的adress属性
+db.users.update({username:"sunwukong"},{$unset:{address:1}})
+
+// 11.向username为sunwukong的文档中，添加一个hobby:{cities:["beijing","shanghai","shenzhen"],movies:["sanguo","hero"]}
+// MongoDB的文档的属性值也可以是一个文档；当一个文档属性值是一个文档时，称为内嵌文档
+db.users.update({username:"sunwukong"},{$set:{hobby:{cities:["beijing","shanghai","shenzhen"],movies:["sanguo","hero"]}}})
+
+// 12.向username为tangseng的文档中，添加一个hobby:{movies:["A Chinese Odyssey","King od comedy"]}
+db.users.update({username:"tangseng"},{$set:{hobby:{movies:["A Chinese Odyssey","King od comedy"]}}})
+
+// 13.查询喜欢电影为hero的文档
+// mongoDB可以直接查询内嵌文档的属性值，通过.的形式选择内嵌文档
+// 内嵌文档的属性名必须加上'或者"
+db.users.find({"hobby.movies":"hero"})
+
+// 14.向tangseng中添加一个新的电影Interstellar
+// ①数组的$push方法  ②$addToSet向数组添加新元素(不重复)
+db.users.update({username:"tangseng"},{$push:{"hobby.movies":"Interstellar"}})
+db.users.update({username:"tangseng"},{$addToSet: {"hobby.movies":"Interstellar"}})
+
+// 15.删除喜欢beijing的用户
+db.users.remove({"hobby.cities":"beijing"}, {justOne: true})
+
+// 16.删除user集合
+// ①remove  ②drop
+db.users.remove({})
+db.users.drop()
+
+// 17.向numbers中插入20000条数据    49.77s
+for(var i=0;i<20000;i++){
+    db.numbers.insert({num:i})
+}
+db.numbers.find()
+db.numbers.find().count()
+
+// 拓展.向numbers中插入20000条数据（优化）    2.605s
+db.numbers.remove({})
+var arr = []
+for(let i=1;i<=20000;i++){
+    arr.push({num:i})
+}
+db.numbers.insert(arr)
+
+// 18.查询numbers中num为500的文档
+db.numbers.find({num:500})
+
+// 19.查询numbers中num大于500的文档
+db.numbers.find({num:{$gt:500}})
+
+// 20.查询numbers中num小于30的文档
+db.numbers.find({num:{$lt:30}})
+
+// 21.查询numbers中num大于40小于50的文档
+db.numbers.find({num:{$gt:40,$lt:50}})
+
+// 22.查询numbers中大于19996的文档
+db.numbers.find({num:{$gt:19996}})
+
+// 23.查看numbers集合中的前10条数据
+db.numbers.find({}).limit(10)
+db.numbers.find({}).skip(0).limit(10)
+
+// 24.查看numbers集合中的11到20条数据
+db.numbers.find({}).skip(10).limit(10)
+
+// 25.查看numbers集合中的21到30条数据
+db.numbers.find({}).skip(20).limit(10)
+
+// 26.查看numbers集合中大于19000或小于10的文档
+db.numbers.find({$or: [{num:{$lt:10}},{num:{$gt:19000}}]})
+
+// 27.字段投影
+db.users.find({username:"sunwokong"},{username:1,hobby:0})
+
+// 28.按顺序排列(优先按username正序，其次按movies倒序)
+db.users.find({}).sort({username:1,"hobby.movies":-1})

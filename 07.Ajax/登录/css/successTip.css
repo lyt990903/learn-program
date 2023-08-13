@@ -1,0 +1,22 @@
+.successTip{
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 60px;
+    background: white;
+    text-align: center;
+    line-height: 60px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    transition: 0.5s;
+}
+
+.tipShow{
+    top: 0;
+}
+
+.successTip h2{
+    font-weight: 400;
+}

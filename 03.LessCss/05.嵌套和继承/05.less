@@ -1,0 +1,82 @@
+//嵌套
+.d1 {
+    color: red;
+    //默认不写，css中是空格(子孙选择器)
+    // .d2{
+    //     background-color: yellow;
+    // }
+
+    //在css中为 .d1 > .d2(后代选择器)
+    >.d2 {
+        background-color: yellow;
+    }
+}
+
+.navigation {
+    background-color: #CCC;
+
+    h1 {
+        font-size: 50px;
+    }
+
+    p {
+        color: red;
+    }
+
+    a {
+        text-decoration: none;
+        background-color: bisque;
+
+        &:hover {
+            //&类似于this，此处可省略
+            text-decoration: underline;
+            background-color: darken(bisque, 10%);
+        }
+    }
+
+}
+
+
+//继承(父类在子类上下没有影响)
+.parent1 {
+    background-color: red;
+}
+
+.child1 {
+    color: yellowgreen;
+    &:extend(.parent1); //此处&不可省略
+}
+
+.child2:extend(.parent1) {
+    color: hotpink;
+}
+
+//多继承
+.parent2 {
+    font-size: 40px;
+}
+
+.child3 {
+    &:extend(.parent1, .parent2);
+}
+
+//all继承
+.aa{
+    color: red;
+}
+.dd{
+    .aa{
+        font-size: 40px;
+    }
+}
+.aa{
+    &:hover{
+        background-color: hotpink;
+    }
+}
+.part:extend(.aa){
+
+}
+.all:extend(.aa all){
+    
+}

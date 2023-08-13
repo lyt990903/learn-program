@@ -1,0 +1,43 @@
+.itany {
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+}
+.hello {
+  width: 100px;
+  height: 100px;
+  border: 1px dashed red;
+}
+div {
+  width: 100px;
+  height: 100px;
+}
+.c1 {
+  background: hotpink;
+}
+#c1 {
+  background: yellowgreen;
+}
+.c2 {
+  background: url('../images/img.jpg');
+}
+.c3 {
+  color: black;
+  background-color: #CCC;
+}
+/*
+@inside: #262626;
+@outside: inside;
+*/
+.c4 {
+  background-color: #262626;
+}
+.c5 {
+  background-color: green;
+}
+/*
+    总结
+    1. 除了简单变量之后，其他变量在调用时都需要加{ }。
+    2. 建议先声明再使用，变量声明放在代码的最前面。
+*/
+/*# sourceMappingURL=./01.css.map */

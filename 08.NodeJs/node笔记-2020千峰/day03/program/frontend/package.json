@@ -1,0 +1,26 @@
+{
+	"name": "program_frontend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack",
+		"dev": "webpack-dev-server"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"clean-webpack-plugin": "^3.0.0",
+		"copy-webpack-plugin": "^6.4.1",
+		"html-webpack-plugin": "^4.5.1",
+		"webpack": "^4.44.2",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "^3.11.2"
+	},
+	"dependencies": {
+		"art-template": "^4.13.2",
+		"express-art-template": "^1.0.1",
+		"sme-router": "^0.12.8"
+	}
+}

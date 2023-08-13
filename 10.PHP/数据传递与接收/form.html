@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>数据发送与接收</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+</head>
+
+<body>
+    <!-- 1.必须用form标签（action、method属性），input必须有name，以关联数组的形式传递。get用的很少，其传递数据附加在网址上 -->
+    <form action="formsave.php" method="POST">
+        <input type="text" name="aa">
+        <input type="submit" value="提交">
+    </form>
+    <form action="formsave.php" method="GET">
+        <input type="text" name="bb">
+        <input type="submit" value="提交">
+    </form>
+</body>
+
+</html>

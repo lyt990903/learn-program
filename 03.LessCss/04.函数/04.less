@@ -1,0 +1,91 @@
+//unit()函数
+/*
+unit(20.px);    加单位
+unit(20px,rem); 换单位
+unit(20px);     去单位
+*/
+
+//convert()函数
+/*
+同类型数据之间的转换，无效返回原始数据
+convert(1500ms,s);   s->ms无效
+convert(100mm,px);
+convert(30deg,rad);
+*/
+
+//color()函数
+/*
+返回颜色对应的十六进制
+color(blue);
+*/
+
+//darken(),lighten(),mix():变深，变浅，混合
+
+//data-uri()函数
+/*
+将图片转换为编码形式
+图片小于32kb时转换成功，否则仍是图片路径
+*/
+.d1 {
+    background-image: data-uri("../images/img.jpg");
+}
+
+//default()函数
+/*
+默认值函数，若参数不是已定义的，则使用自定义样式
+*/
+.itany(1) {
+    font-size: 1rem;
+}
+
+.itany(2) {
+    font-size: 2rem;
+}
+
+.itany(@size) when(default()) {
+    font-size: unit(@size, rem);
+}
+
+.d1 {
+    .itany(1); //1rem
+    .itany(2); //2rem
+    .itany(4); //4rem
+}
+
+//replace()函数
+/*
+replace("Hello World","o","O"); //将第一个o转换为O
+replace("Hello World", "o", "O",g)  //将所有o转换为O
+repalce("welcome to itany.","(itany)\.$","$1"); //可以使用正则
+*/
+.d1::after {
+    content: replace("Welcome to itany.", "(itany)\.$", "'$1'");
+}
+
+//length()函数
+/*
+获取值的数量，只能以逗号，空格分割。
+*/
+@list1: "jack", "rose", "gray";
+@num1: length(@list1); //3
+@list2: "one""two""three";
+@num2: length(@list2); //3
+
+//extract()函数
+/*
+获取一组值中指定位置的值
+*/
+@setBorder:1px solid red;
+.d1{
+    border: @setBorder;
+    color: extract(@setBorder,3);
+}
+
+//数学函数
+/*
+cell、floor、sqrt、abs、sln、asln、cos、acos、tan、atan、pow、min、max
+round：四舍五入
+percentage：将数值转换为百分比
+pi：Math.PI
+mod：取余数
+*/

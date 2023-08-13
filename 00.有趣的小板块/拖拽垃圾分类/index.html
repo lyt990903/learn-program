@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Rubbish Sort</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>你是什么垃圾 ？</h1>
+    </header>
+    <main>
+
+        <div class="result"></div>
+
+        <div class="rabbish">
+            <img draggable="true">
+        </div>
+        <div class="rubbishStation">
+            <div class="dustbin">
+                <svg class="dustbin-draw" data-dustbin-class="kitchen">
+                    <polygon class="dustbin-draw" data-dustbin-class="kitchen" points="2,17 2,7 22,7 32,2 132,2 142,7 162,7 162,17" />
+                    <polygon class="dustbin-draw" data-dustbin-class="kitchen" points="2,18 162,18 152,243 142,243 132,233 32,233 22,243 12,243" />
+                </svg>
+            </div>
+            <div class="dustbin">
+                <svg class="dustbin-draw" data-dustbin-class="other">
+                    <polygon class="dustbin-draw" data-dustbin-class="other" points="2,17 2,7 22,7 32,2 132,2 142,7 162,7 162,17" />
+                    <polygon class="dustbin-draw" data-dustbin-class="other" points="2,18 162,18 152,243 142,243 132,233 32,233 22,243 12,243" />
+                </svg>
+            </div>
+            <div class="dustbin">
+                <svg class="dustbin-draw" data-dustbin-class="recyclable">
+                    <polygon class="dustbin-draw" data-dustbin-class="recyclable" points="2,17 2,7 22,7 32,2 132,2 142,7 162,7 162,17" />
+                    <polygon class="dustbin-draw" data-dustbin-class="recyclable" points="2,18 162,18 152,243 142,243 132,233 32,233 22,243 12,243" />
+                </svg>
+            </div>
+            <div class="dustbin">
+                <svg class="dustbin-draw" data-dustbin-class="harmful">
+                    <polygon class="dustbin-draw" data-dustbin-class="harmful" points="2,17 2,7 22,7 32,2 132,2 142,7 162,7 162,17" />
+                    <polygon class="dustbin-draw" data-dustbin-class="harmful" points="2,18 162,18 152,243 142,243 132,233 32,233 22,243 12,243" />
+                </svg>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        imgSort = null;
+        imgPath = null;
+
+        function imgChange() {
+            $.ajax({
+                url: "./php/getImg.php",
+                type: "GET",
+                async: false,
+                success: function (data) {
+                    imgSort = data.sort;
+                    imgPath = data.path;
+                }
+            })
+            console.log(imgSort);
+            console.log(imgPath);
+        }
+    </script>
+    <script>
+        imgChange()
+        $(".rabbish img").attr("src", imgPath);
+        document.ondragstart = function (e) {}
+        document.ondragover = function (e) {
+            e.preventDefault();
+        }
+        document.ondrop = function (e) {
+            $(".dustbin").each(function () {
+                if ($(this).hasClass("Dropping")) {
+                    $(this).removeClass("Dropping");
+                }
+            })
+
+            if ($(e.target).data("dustbinClass") == imgSort) {
+                $(".result").addClass("right");
+                imgChange();
+                $(".rabbish img").attr("src", imgPath);
+                setTimeout(
+                    '$(".result").toggleClass("right")', 500
+                )
+                
+            } else {
+                $(".result").toggleClass("wrong");
+                setTimeout(
+                    '$(".result").toggleClass("wrong")', 500
+                )
+            }
+        }
+        document.ondragenter = function (e) {
+            if ($($(e.target)[0]).hasClass("dustbin-draw")) {
+                if (!$($(e.target)[0].parentElement).hasClass("Dropping"))
+                    $($(e.target)[0].parentElement).addClass("Dropping");
+            }
+        }
+        document.ondragleave = function (e) {
+            if ($(e.target)[0].className.animVal == "dustbin-draw") {
+                if ($($(e.target)[0].parentElement).hasClass("Dropping"))
+                    $($(e.target)[0].parentElement).removeClass("Dropping");
+            }
+        }
+    </script>
+</body>
+
+</html>

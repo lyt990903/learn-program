@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <img src="./img/bc.jpg">
+        <div class="panel">
+            <div class="content login">
+                <div class="switch">
+                    <span id="login" class="active">Login</span>
+                    <span>/</span>
+                    <span id="signup">Sign Up</span>
+                </div>
+                <form action="">
+                    <div id="email" class="input" placeholder="Email"><input type="email"></div>
+                    <div class="input" placeholder="Username"><input type="text"></div>
+                    <div class="input" placeholder="Password"><input type="password"></div>
+                    <div id="repeat" class="input" placeholder="Repeat"><input type="password"></div>
+                    <span>Forgot?</span>
+                    <button class="submit">LOGIN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#login').click(function () {
+            $('.switch span').removeClass('active');
+            $(this).addClass('active');
+            $(this).parents('.content').removeClass('signup');
+            $(this).parents('.content').addClass('login');
+            $('form button').text("LOGIN");
+            $('form span').text("Forgot?");
+        })
+        $('#signup').click(function () {
+            $('.switch span').removeClass('active');
+            $(this).addClass('active');
+            $(this).parents('.content').removeClass('login');
+            $(this).parents('.content').addClass('signup');
+            $('form button').text("SIGN UP");
+            $('form span').text("");
+        })
+        $('.input input').focus(function () {
+            $(this).parent().addClass('focus');
+        })
+        $('.input input').blur(function () {
+            $(this).parent().removeClass('focus');
+        })
+
+    </script>
+</body>
+
+</html>

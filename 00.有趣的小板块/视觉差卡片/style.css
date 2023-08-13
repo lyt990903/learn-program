@@ -1,0 +1,95 @@
+.container {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  background-image: url("./iamges/bg.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card {
+  position: absolute;
+  width: 1000px;
+  height: 600px;
+  filter: drop-shadow(4px 4px 12px rgba(0,0,0,.5));
+  background-size: cover;
+  opacity: .7;
+  transition: 1.5s ease-in-out;
+  overflow: hidden;
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  width: 1000px;
+  height: 600px;
+  background-image: url("./iamges/bg.jpg");
+}
+
+.left-top {
+  left: -400px;
+  transform: rotate(102deg);
+
+}
+
+.left-top:after {
+  transform: rotate(-102deg);
+}
+
+.left-bottom {
+  left: -400px;
+  transform: rotate(-101deg);
+
+}
+
+.left-bottom:after {
+  transform: rotate(101deg);
+}
+
+.right-top {
+  right: -400px;
+  transform: rotate(-105deg);
+
+}
+
+.right-top:after {
+  transform: rotate(105deg);
+}
+
+.right-bottom {
+  right: -400px;
+  transform: rotate(103deg);
+
+}
+
+.right-bottom:after {
+  transform: rotate(-103deg);
+}
+
+.text {
+  opacity: 0;
+  font-weight: 900;
+  font-size: 50px;
+  letter-spacing: 10px;
+  color: rgb(60, 60, 70);
+  transition: 1s linear;
+}
+
+.container:hover .left-top {
+  left: -570px;
+}
+.container:hover .left-bottom {
+  left: -610px;
+}
+.container:hover .right-top {
+  right: -560px;
+}
+.container:hover .right-bottom {
+  right: -610px;
+}
+.container:hover .text {
+  opacity: 1;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Send File</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+</head>
+
+<body>
+    <!-- enctype属性：对发送的数据进行编码
+            默认值：application/x-www-form-urlencoded
+            发送文件：multipart/form-data
+            空格转”+“号：text/plain
+    -->
+    <form action="./postFile.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="files">
+        <br>
+        <input type="submit">
+    </form>
+
+</body>
+
+</html>

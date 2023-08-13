@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app1">
+    <my-cpn></my-cpn>
+    <cpn></cpn>
+  </div>
+  <div class="app2">
+    <my-cpn></my-cpn>
+    <cpn></cpn>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const cpnC = Vue.extend({
+      template: `
+        <div>
+          <h2>我是标题</h2>
+          <p>哈哈哈哈哈哈</p>
+          <p>呵呵呵呵呵呵</p>
+        </div>
+      `
+    });
+
+    // 该方法注册为全局组件，在所有Vue实例中都可以使用
+    Vue.component('my-cpn', cpnC);
+
+    const app1 = new Vue({
+      el: '.app1',
+      data: {
+
+      },
+      components: {
+        // 该方法注册为局部组件，仅在该Vue实例中可以使用，使用时的标签名: 组件构造器名
+        cpn: cpnC
+      }
+    });
+
+    const app2 = new Vue({
+    el: '.app2',
+    data: {
+
+    }
+    });
+  </script>
+</body>
+
+</html>

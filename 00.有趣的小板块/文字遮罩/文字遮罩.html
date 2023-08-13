@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 991px;
+            height: 987px;
+            margin: 200px auto;
+            background: url('zhezhao.jpg') no-repeat;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-animation: move 5s infinite alternate linear;
+            -moz-animation: move 5s infinite alternate linear;
+            -o-animation: move 5s infinite alternate linear;
+            animation: move 5s infinite alternate linear;
+        }
+
+        div:after {
+            background: inherit;
+        }
+
+        @-webkit-keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -200px -100px;
+            }
+        }
+
+        @-moz-keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -200px -100px;
+            }
+        }
+
+        @-o-keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -200px -100px;
+            }
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -200px -100px;
+            }
+        }
+
+        p {
+            font-size: 120px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>秃头客栈</p>
+    </div>
+</body>
+
+</html>

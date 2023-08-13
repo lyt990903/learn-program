@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.shapeBox {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    // box-sizing: border-box;
+}
+
+@color: yellowgreen;
+
+.baseStyle(@height: 100%, @width: 100%, @background: @color) {
+    width: @width;
+    height: @height;
+    background: @background;
+}
+
+.shapeBox {
+    .circle {
+        .baseStyle();
+        border-radius: 50%;
+    }
+
+    .square {
+        .baseStyle();
+    }
+
+    .rectangle {
+        .baseStyle(60%);
+    }
+
+    .oval {
+        .baseStyle(60%);
+        border-radius: 100% 100%;
+    }
+
+    .triangle {
+        .baseStyle(0, 0, transparent);
+        border-bottom: 100px solid @color;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+    }
+
+    .triangle-reverse {
+        .baseStyle(0, 0, transparent);
+        border-top: 100px solid @color;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+    }
+
+    .triangle-left {
+        .baseStyle(0, 0, transparent);
+        border-right: 100px solid @color;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+    }
+
+    .triangle-right {
+        .baseStyle(0, 0, transparent);
+        border-left: 100px solid @color;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+    }
+    .diamond {
+        .baseStyle(70%,70%);
+        transform: rotate(-45deg);
+        transform-origin: 50% 50%;
+    }
+    .trapezium {
+        .baseStyle(0,100%,transparent);
+        border-bottom: 100px solid @color;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+    }
+    .parallelogram {
+        .baseStyle();
+        transform: skew(35deg);
+        transform-origin: 0 0;
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #canvas {
+      position: absolute;
+      top: 15%;
+    }
+
+    .text-box {
+      position: relative;
+      font-size: xx-large;
+      color: hotpink;
+      top: 25%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <img src="./img.jpg" alt="">
+    <canvas id="canvas" height="150" width="150"></canvas>
+    <div class="text-box">爱你嗷</div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('canvas').getContext('2d');
+    const radgad = ctx.createRadialGradient(50,50,10,50,50,100);
+    radgad.addColorStop(0, '#d63031');
+    radgad.addColorStop(0.5, '#ff7675');
+    ctx.beginPath();
+    ctx.moveTo(75, 40);
+    ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+    ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+    ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+    ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+    ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+    ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+    ctx.fillStyle = radgad;
+    ctx.fill();
+  </script>
+</body>
+
+</html>

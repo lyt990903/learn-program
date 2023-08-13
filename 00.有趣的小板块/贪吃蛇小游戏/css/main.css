@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.map {
+    width: 800px;
+    height: 600px;
+    background-color: gainsboro;
+    position: relative;
+    float: left;
+}
+#scoreBoard{
+    width: 200px;
+    height: 110px;
+    border: 4px solid orange;
+    border-radius: 4px;
+    display: inline-block;
+    margin:50px 0px 0px 110px; 
+    padding: 0 0 0 5px;
+}

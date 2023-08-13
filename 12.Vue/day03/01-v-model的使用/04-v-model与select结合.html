@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- 单选 -->
+    <select v-model="hobby">
+      <option value="篮球">篮球</option>
+      <option value="足球">足球</option>
+      <option value="乒乓球">乒乓球</option>
+      <option value="橄榄球">橄榄球</option>
+    </select>
+    <h5>{{hobby}}</h5>
+
+    <!-- 多选 -->
+    <select v-model="hobbys" multiple>
+      <option value="篮球">篮球</option>
+      <option value="足球">足球</option>
+      <option value="乒乓球">乒乓球</option>
+      <option value="橄榄球">橄榄球</option>
+    </select>
+    <h5>{{hobbys}}</h5>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        hobby: '篮球',
+        hobbys: []
+      }
+    });
+  </script>
+</body>
+
+</html>

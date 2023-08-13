@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.shapeBox {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+.shapeBox .circle {
+  width: 100%;
+  height: 100%;
+  background: yellowgreen;
+  border-radius: 50%;
+}
+.shapeBox .square {
+  width: 100%;
+  height: 100%;
+  background: yellowgreen;
+}
+.shapeBox .rectangle {
+  width: 100%;
+  height: 60%;
+  background: yellowgreen;
+}
+.shapeBox .oval {
+  width: 100%;
+  height: 60%;
+  background: yellowgreen;
+  border-radius: 100% 100%;
+}
+.shapeBox .triangle {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-bottom: 100px solid yellowgreen;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+}
+.shapeBox .triangle-reverse {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-top: 100px solid yellowgreen;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+}
+.shapeBox .triangle-left {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-right: 100px solid yellowgreen;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+}
+.shapeBox .triangle-right {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 100px solid yellowgreen;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+}
+.shapeBox .diamond {
+  width: 70%;
+  height: 70%;
+  background: yellowgreen;
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+}
+.shapeBox .trapezium {
+  width: 100%;
+  height: 0;
+  background: transparent;
+  border-bottom: 100px solid yellowgreen;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+}
+.shapeBox .parallelogram {
+  width: 100%;
+  height: 100%;
+  background: yellowgreen;
+  transform: skew(35deg);
+  transform-origin: 0 0;
+}
+/*# sourceMappingURL=./shape.css.map */

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .wrap {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .wrap>div {
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="div" style="background: red;"></div>
+        <div class="div" style="background: orange;"></div>
+        <div class="div" style="background: yellow;"></div>
+        <div class="div" style="background: green;"></div>
+        <div class="div" style="background: blue;"></div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            var r = 130;
+            var divNodes = document.querySelectorAll(".wrap > .div");
+
+            document.onmousemove = function (e) {
+                for (var i = 0; i < divNodes.length; i++) {
+                    // console.log(divNodes[i].offsetWidth);
+                    var a = divNodes[i].getBoundingClientRect().left + divNodes[i].offsetWidth / 2 - e.clientX;
+                    var b = divNodes[i].getBoundingClientRect().top + divNodes[i].offsetHeight / 2 - e.clientY;
+                    var c = Math.sqrt(a * a + b * b);
+                    // console.log(a,b,c);
+
+                    if (c >= 130) {
+                        c = 130;
+                    }
+
+                    divNodes[i].style.width = 128 - c * 0.5 + "px";
+                    divNodes[i].style.height = 128 - c * 0.5 + "px";
+                }
+            }
+        }
+    </script>
+
+
+    <!-- offsetParent -->
+    <script>
+        // 鼠标滚轮
+        // 事件绑定
+        /*
+            1.父级是否有定位（4种）
+            2.本身是否有定位（4种）
+            3.浏览器不一样
+        */
+
+        /*
+            ie7以上（非火狐）
+            父级没有定位
+                本身没有定位
+                    ==> offsetParent:body
+                本身定位为absolute/relative
+                    ==> offsetParent:body
+                本身定位为fixed
+                    ==> offsetParent:null
+            父级有定位
+                本身没有定位
+                    ==> offsetParent:定位父级
+                本身定位为absolute/relative
+                    ==> offsetParent:定位父级
+                本身定位为fixed
+                    ==> offsetParent:null
+        */
+    </script>
+</body>
+
+</html>

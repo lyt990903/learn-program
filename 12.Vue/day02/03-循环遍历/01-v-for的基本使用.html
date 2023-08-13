@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- v-for遍历数组 -->
+    <ul>
+      <li v-for="(item,index) in list">{{index + 1}} - {{item}}</li>
+      <li v-for="(value,key) in info">{{key}} : {{value}}</li>
+    </ul>
+    <!-- v-for遍历对象 -->
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        list: ['the first', 'the second', 'the third'],
+        info: {
+          name: 'ACFCoder',
+          age: 17,
+          height: 1.77
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <canvas id="canvas" width="200" height="200"></canvas>
+
+  <script>
+    const ctx = document.getElementById('canvas').getContext('2d');
+
+    /*
+      canvas提供了两种方法来渲染文本
+      fillText(text,x,y,[,maxWidth])：在指定的位置x，y填充指定文本text，绘制的最大宽度是可选的
+      strokeText(text,x,y,[,maxWidth])：在指定的位置x，y位置绘制空心文本text，绘制的最大宽度是可选的
+    */
+    function drawText() {
+      ctx.font = "35px serif";
+      ctx.fillText("sample string",0,20);
+      ctx.strokeText("sample string",0,70);
+    }
+    //drawText();
+
+    /*
+      有样式的文本
+      font = value：使用和CSS font属性相同的字符串，默认为"10px sans-serif"
+      textAlign = value：文本的对齐选线，包括【start、end、left、right、center】，默认为start
+      textBaseLine = value：基线对齐选项，包括【top、hanging、middle、alphabetic、ideographic、bottom】，默认为alphabetic
+      direction = value：文本方向，包括【ltr、rtl、inherit】，默认是inherit
+    */
+
+    /*
+      预测量文本宽度
+      measureText()将返回一个TextMetrics对象的宽度、所在像素，这些体现文本特征的属性
+    */
+  </script>
+</body>
+
+</html>

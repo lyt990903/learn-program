@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: whitesmoke;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    .btn {
+        width: 240px;
+        height: 100px;
+        margin: 100px;
+        border: 0px;
+        background-size: 200%;
+        text-transform: uppercase;
+        color: gray;
+        font-weight: 700;
+        transition: .4s;
+
+        &:nth-of-type(1) {
+            background-image: linear-gradient(to left, #e67e22, #f1c40f, #e67e22);
+        }
+
+        &:nth-of-type(2) {
+            background-image: linear-gradient(to left, #16a085, #2ecc71, #16a085);
+        }
+
+        &:nth-of-type(3) {
+            background-image: linear-gradient(to left, #2e86de, #48dbfb, #2e86de);
+        }
+
+        &:nth-of-type(4) {
+            background-image: linear-gradient(to left, #4b7bec, #8854d0, #4b7bec);
+        }
+
+        &:hover{
+            background-position: right;
+        }
+    }
+}

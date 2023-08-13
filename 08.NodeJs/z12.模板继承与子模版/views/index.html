@@ -1,0 +1,25 @@
+<!-- art-template 子模版与模板继承 -->
+{{ extend './layout.html' }}
+
+<!-- 修改头部，添加style -->
+{{ block 'head' }}
+<style>
+    *{
+        color: hotpink;
+    }
+</style>
+{{ /block }}
+
+<!-- 修改内容部分 -->
+{{ block 'content' }}
+    <div>
+        <h1>修改后内容</h1>
+    </div>
+{{ /block }}
+
+<!-- 修改script部分，添加script标签 -->
+{{ block 'script' }}
+<script>
+    alert("modify")
+</script>
+{{ /block }}

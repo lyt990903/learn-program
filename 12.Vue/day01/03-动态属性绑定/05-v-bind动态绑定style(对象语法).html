@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- {key(属性名): value(字符串)} -->
+    <h2 class="title" :style="getStyle()">HelloWorld</h2>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        finalSize: 100,
+        finalColor: 'red'
+      },
+      methods: {
+        getStyle: function () {
+          return {
+            fontSize: this.finalSize + 'px',
+            color: this.finalColor
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

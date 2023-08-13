@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- v-for遍历渲染，如果数组中增加一个单元，则后面的元素都会重新渲染 -->
+    <!-- 如果有:key属性的话，虚拟DOM在重新渲染时发现key与内容仍然对应，则不会重新渲染 -->
+    <!-- 提高重新渲染的性能，注意key的值不要使用index，index增加单元之后也会变，要使用id这种唯一标识 -->
+    <ul>
+      <li v-for="item in list" :key="item">{{item}}</li>
+    </ul>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        list: ['A', 'B', 'C', 'D', 'E']
+      }
+    });
+  </script>
+</body>
+
+</html>

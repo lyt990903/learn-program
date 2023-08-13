@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <canvas id="canvas" width="200" height="200"></canvas>
+
+  <script>
+    const ctx = document.getElementById('canvas').getContext('2d');
+    /*
+      状态的保存和恢复Saving and restoring state
+      save()：保存画布(canvas)的所有状态
+      restore()：save和restore方法是用来保存和恢复canvas状态的，都没有参数。Canvas的状态就是当前画面应用的所有样式和变形的一个快照。
+      Canvas状态存储在栈中，每当save()方法被调用后，当前的状态就被推送到栈中保存。
+      一个绘画状态包括：
+      ·当前应用的变形（即移动，旋转，缩放）
+      ·strokeStyle，fillStyle，globalAlpha，lineWdith，lineCap，lineJoin，miterLimit，shadowOffsetX，shadowOffsetY，shadowBlur，shadowColor，globalCompositionOperation的值
+      ·当前的裁切路径（clipping path）
+
+      可以调用任意多次save方法
+      每一次调用restore方法，上一个保存的状态就从栈中弹出，所有设定都恢复
+    */
+    function drawSaving() {
+      ctx.fillRect(0, 0, 150, 150);
+      ctx.save();
+
+      ctx.fillStyle = "#09F";
+      ctx.fillRect(15, 15, 120, 120);
+      ctx.save();
+
+      ctx.fillStyle = "#fff";
+      ctx.globalAlpha = 0.5;
+      ctx.fillRect(30, 30, 90, 90);
+
+      ctx.restore(); // 从栈中调出一个，fillStyle恢复为#09F，globaAlpha恢复为1     
+      ctx.fillRect(45, 45, 60, 60);
+
+      ctx.restore(); // 再从栈中调出一个，恢复为默认
+      ctx.fillRect(60, 60, 30, 30);
+    }
+    //drawSaving();
+
+    /*
+      移动Translating
+      translate(x,y)：x是左右偏移量，y是上下偏移量
+    */
+    function drawTranslating() {
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          ctx.save();
+          ctx.fillStyle = `rgb(${51*i},${255-51*j},255)`;
+          ctx.translate(i * 50, j * 50);
+          ctx.fillRect(0, 0, 25, 25);
+          ctx.restore();
+        }
+      }
+    }
+    //drawTranslating();
+
+    /*
+      旋转Rotating
+      rotate(angle)：按顺时针方向旋转angle弧度
+    */
+    function drawRotating() {
+      ctx.translate(75, 75);
+
+      for (let i = 0; i < 6; i++) {
+        ctx.save();
+        ctx.fillStyle = 'rgb(' + (51 * i) + ',' + (255 - 51 * i) + ',255)';
+
+        for (let j = 0; j < i * 6; j++) {
+          ctx.rotate((Math.PI * 2) / (i * 6));
+          ctx.beginPath();
+          ctx.arc(0, i * 12.5, 5, 0, Math.PI * 2, true);
+          ctx.fill();
+        }
+
+        ctx.restore();
+      }
+    }
+    //drawRotating();
+
+    /*
+      缩放Scaling
+      scale(x,y)：两个参数均可为负。x为水平缩放因子，y为垂直缩放因子。
+    */
+    function drawScaling() {
+      ctx.beginPath();
+      ctx.arc(20, 20, 20, 0, Math.PI);
+      ctx.fill();
+      ctx.save();
+
+      ctx.scale(0.5, 0.5);
+      ctx.beginPath();
+      ctx.arc(40, 100, 20, 0, Math.PI);
+      ctx.fill();
+
+      ctx.restore();
+      ctx.scale(2, 2);
+      ctx.beginPath();
+      ctx.arc(50, 10, 20, 0, Math.PI);
+      ctx.fill();
+
+      ctx.scale(0.5, -0.5);
+      ctx.beginPath();
+      ctx.arc(20, -90, 20, 0, Math.PI);
+      ctx.fill();
+    }
+    //drawScaling();
+
+    /*
+      变形 Transforms
+      transform(m11,m12,m21,m22,dx,dy)
+      这个方法是将当前的变形矩阵乘上一个基于自身参数的矩阵
+      m11 m21 d x
+      m12 m22 d y
+       0   0   0
+      如果一个参数是无限大，变形矩阵必须也被标记为无限大，否则会抛出异常
+      m11：水平方向的缩放
+      m12：水平方向的倾斜偏移
+      m21：竖直方向的倾斜偏移
+      m22：竖直方向的缩放
+       dx：水平方向的移动
+       dy：竖直方向的移动
+       setTransform(m11,m12,m21,m22,dx,dy)：先将矩阵重置为单位矩阵再执行transform()
+    */
+    function drawTransforms() {
+      let sin = Math.sin(Math.PI / 6);
+      let cos = Math.cos(Math.PI / 6);
+      ctx.translate(100, 100);
+      let c = 0;
+      for (let i = 0; i <= 12; i++) {
+        c = Math.floor(255 / 12 * i);
+        ctx.fillStyle = `rgb(${c},${c},${c})`;
+        ctx.fillRect(0, 0, 100, 10);
+        ctx.strokeRect(0, 0, 100, 10);
+        ctx.transform(cos, sin, -sin, cos, 0, 0);
+      }
+
+      ctx.setTransform(-1, 0, 0, 1, 100, 100);
+      ctx.fillStyle = `rgba(255,128,255,0.5)`;
+      ctx.fillRect(0, 50, 100, 100);
+    }
+    drawTransforms();
+  </script>
+</body>
+
+</html>

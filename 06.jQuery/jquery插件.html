@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+</head>
+
+<body>
+    <a href="#">123213123123</a>
+    <p>这里是测试文本</p>
+    <button>点我</button>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    $.extend({
+        sayHello: function (name) {
+            console.log("Hello " + name + "!");
+        }
+    })
+
+    $.sayHello("萌新");
+
+    $.fn.sayHi = function (name) {
+        console.log("Hi " + name + "!");
+    }
+    $.sayHi("小白");
+
+    //面对对象
+    (function () {
+        var Bary = function (ele, options) {
+            this.element = ele;
+            this.defaults = {
+                "color": "red",
+                "fontSize": "15px"
+            };
+            this.options = $.extend({}, this.defaults, options);
+
+            Bary.prototype = {
+                setProp: function () {
+                    return this.element.css({
+                        "color": this.options.color,
+                        "font-size": this.options.fontSize,
+                    });
+                },
+            };
+        };
+        $.fn.myStyle = function (options) {
+            var bary = new Bary(this, options);
+            return bary.setProp();
+        };
+    })();
+
+    $(function () {
+        $("button").click(function () {
+            $("p").myStyle({
+                "color": "blue",
+                "fontSize": "50px"
+            });
+        });
+    })
+</script>
+
+</html>

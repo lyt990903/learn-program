@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>基本使用</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- <style>
+        .itany {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+
+        .hello {
+            width: 100px;
+            height: 100px;
+            border: 1px dashed red;
+        }
+    </style> -->
+
+    <!-- less的使用1：必须要写type="text/less" -->
+    <style type="text/less">
+        /* @color:red;
+        .itany {
+            width: 200px;
+            height: 200px;
+            border: 1px solid @color;
+        }
+
+        .hello {
+            width: 100px;
+            height: 100px;
+            border: 1px dashed @color;
+        } */
+    </style>
+
+    <!-- 
+        less外部引用，必须要写rel=“stylesheet/less” 
+        需要服务器访问
+    -->
+    <link rel="stylesheet/less" href="./01.less">
+    <!-- <link rel="stylesheet" href="./01.css"> -->
+
+    <!-- less使用2：js文件要在style后面引用 -->
+    <script src="../js/less.js"></script>
+</head>
+
+<body>
+    <div class="itany" id="c1"></div>
+    <div class="hello c1"></div>
+    <div class="c2"></div>
+    <div class="c3">div3</div>
+    <div class="c4"></div>
+    <div class="c5"></div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="interactiveBtn">
+        <div class="interactiveBtn-back">
+            <p>Are You Sure You Want To Do That?</p>
+            <button class="yes">YES</button>
+            <button class="no">NO</button>
+        </div>
+        <div class="interactiveBtn-front">DELETE</div>
+    </div>
+
+    <script>
+        $(".interactiveBtn").click(function () {
+            $(this).addClass("opening").attr("data-direction", "bottom");
+        })
+
+        $(".interactiveBtn>.interactiveBtn-back>.no").click(function (e) {
+            $(".interactiveBtn").removeClass("opening");
+            e.stopPropagation();
+        })
+
+        $(".interactiveBtn>.interactiveBtn-back>.yes").click(function (e) {
+            $(".interactiveBtn").removeClass("opening");
+            e.stopPropagation();
+        })
+    </script>
+</body>
+
+</html>

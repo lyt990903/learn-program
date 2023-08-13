@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <canvas id="canvas" width="300" height="300"></canvas>
+
+  <script>
+    /*
+      动画的基本步骤
+      1.清空canvas
+      除非接下来要画的内容会完全填满canvas，否则你需要清空所有。最简单的做法就是用clearRect()
+      2.保存canvas状态
+      如果你要改变一些会改变canvas状态的设置(样式，变形之类的)，又要在每一帧之时都是原始状态的话，你需要先保存以下。
+      3.绘制动画图形(animated shapes)
+      这一步才是重绘动画帧。
+      4.恢复canvas状态
+      如果已经保存了canvas的状态，可以先恢复它，然后重绘下一帧。
+    */
+
+    /*
+      操控动画 Controlling an animation
+      有安排的更新画布Scheduled updates
+      setInterval(function,dalay)
+      setTimeout(function,delay)
+      requestAnimationFrame(callback)
+      告诉浏览器你希望执行一个动画，并在重绘之前，请求浏览器执行一个特定的函数来更新动画。
+    */
+
+    // 太阳系动画
+    class SolarSystem {
+      init() {
+        this.sun = new Image();
+        this.moon = new Image();
+        this.earth = new Image();
+        this.sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
+        this.moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
+        this.earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
+        window.requestAnimationFrame(this.drawSS.bind(this));
+      }
+      drawSS() {
+        console.log(this.sun);
+        let ctx = document.getElementById('canvas').getContext('2d');
+        ctx.globalCompositeOperation = 'destination-over';
+        ctx.clearRect(0, 0, 300, 300);
+
+        ctx.fillStyle = "rgba(0,0,0,0.4)";
+        ctx.strokeStyle = "rgba(0,153,255,0.4)";
+        ctx.save();
+        ctx.translate(150, 150);
+
+        // earth
+        let time = new Date();
+        ctx.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
+        ctx.translate(105, 0);
+        ctx.fillRect(0, -12, 50, 24); // Shadow
+        ctx.drawImage(this.earth, -12, -12);
+
+        // moon
+        ctx.save();
+        ctx.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
+        ctx.translate(0, 28.5);
+        ctx.drawImage(this.moon, -3.5, -3.5);
+        ctx.restore();
+
+        ctx.restore();
+
+        // earth
+        ctx.beginPath();
+        ctx.arc(150, 150, 105, 0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.drawImage(this.sun, 0, 0, 300, 300);
+
+        window.requestAnimationFrame(this.drawSS.bind(this));
+      }
+    }
+    //  const ss = new SolarSystem();
+    //  ss.init();
+
+    // 动画时钟
+    function drawClock() {
+      var now = new Date();
+      var ctx = document.getElementById('canvas').getContext('2d');
+      ctx.save();
+      ctx.clearRect(0, 0, 150, 150);
+      ctx.translate(75, 75);
+      ctx.scale(0.4, 0.4);
+      ctx.rotate(-Math.PI / 2);
+      ctx.strokeStyle = "black";
+      ctx.fillStyle = "white";
+      ctx.lineWidth = 8;
+      ctx.lineCap = "round";
+
+      // Hour marks
+      ctx.save();
+      for (var i = 0; i < 12; i++) {
+        ctx.beginPath();
+        ctx.rotate(Math.PI / 6);
+        ctx.moveTo(100, 0);
+        ctx.lineTo(120, 0);
+        ctx.stroke();
+      }
+      ctx.restore(); 
+      
+      // Minute marks
+      ctx.save();
+      ctx.lineWidth = 5;
+      for (i = 0; i < 60; i++) {
+        if (i % 5 != 0) {
+          ctx.beginPath();
+          ctx.moveTo(117, 0);
+          ctx.lineTo(120, 0);
+          ctx.stroke();
+        }
+        ctx.rotate(Math.PI / 30);
+      }
+      ctx.restore();
+
+      var sec = now.getSeconds();
+      var min = now.getMinutes();
+      var hr = now.getHours();
+      hr = hr >= 12 ? hr - 12 : hr;
+
+      ctx.fillStyle = "black";
+
+      // write Hours
+      ctx.save();
+      ctx.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) * sec)
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.moveTo(-20, 0);
+      ctx.lineTo(80, 0);
+      ctx.stroke();
+      ctx.restore();
+
+      // write Minutes
+      ctx.save();
+      ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
+      ctx.lineWidth = 10;
+      ctx.beginPath();
+      ctx.moveTo(-28, 0);
+      ctx.lineTo(112, 0);
+      ctx.stroke();
+      ctx.restore();
+
+      // Write seconds
+      ctx.save();
+      ctx.rotate(sec * Math.PI / 30);
+      ctx.strokeStyle = "#D40000";
+      ctx.fillStyle = "#D40000";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(-30, 0);
+      ctx.lineTo(83, 0);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(95, 0, 10, 0, Math.PI * 2, true);
+      ctx.stroke();
+      ctx.fillStyle = "rgba(0,0,0,0)";
+      ctx.arc(0, 0, 3, 0, Math.PI * 2, true);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.lineWidth = 14;
+      ctx.strokeStyle = '#325FA2';
+      ctx.arc(0, 0, 142, 0, Math.PI * 2, true);
+      ctx.stroke();
+
+      ctx.restore();
+
+      window.requestAnimationFrame(drawClock);
+    }
+    window.requestAnimationFrame(drawClock);
+    
+  </script>
+</body>
+
+</html>

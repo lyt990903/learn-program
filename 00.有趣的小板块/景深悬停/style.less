@@ -1,0 +1,98 @@
+@import url('http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Popins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    background: linear-gradient(0deg, #fff 50%, #2196f3);
+}
+
+.container {
+    max-width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    transition: 0.5s;
+
+    &:hover {
+        .card {
+            filter: blur(5px);
+            transform: scale(.7);
+        }
+    }
+
+    .card {
+        position: relative;
+        width: 250px;
+        height: 300px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+
+        .content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 20px;
+            transition: 0.5s;
+
+            h2 {
+                font-size: 3em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            a {
+                display: inline-block;
+                margin-top: 15px;
+                padding: 5px 10px;
+                background: #262626;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+
+        &:hover {
+            filter: blur(0px);
+            transform: scale(1);
+
+            .content {
+                color: #fff;
+
+                a {
+                    background: #2196f3;
+                }
+            }
+
+            &:before {
+                background: #000;
+                transform: scaleY(1.15);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+            }
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 1;
+            transition: 0.5s;
+        }
+    }
+
+
+}

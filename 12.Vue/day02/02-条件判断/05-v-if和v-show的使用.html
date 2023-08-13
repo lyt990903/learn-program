@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- v-if为false时，元素不会出现在DOM中 -->
+    <h2 v-if="isShow">HelloWorld</h2>
+    <!-- v-show为false时，添加display:none属性隐藏 -->
+    <h2 v-show="isShow">HelloWorld</h2>
+    <!-- 需要多次切换时用v-show，只切换一此时用v-if -->
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        isShow: false
+      }
+    });
+  </script>
+</body>
+
+</html>

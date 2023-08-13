@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=vue, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="app">
+    <!-- v-model相当于绑定了name属性，成为单选 -->
+    <label for="man">
+      <input type="radio" id="man" value="男" v-model="sex">男
+    </label>
+    <label for="woman">
+      <input type="radio" id="woman" value="女" v-model="sex">女
+    </label>
+    <h4>您选择的是:{{sex}}</h4>
+  </div>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app',
+      data: {
+        sex:"男"
+      }
+    });
+  </script>
+</body>
+
+</html>

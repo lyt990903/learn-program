@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    实现功能：
+    1. 父组件传给子组件数据（props）
+    2. 子组件通过input双向绑定自己继承的数据（通过data将props转为自己的）
+    3. 修改的同时父组件的值也发生变化（$emit）
+    4. 两个属性之间保持100倍关系
+   -->
+  <div class="app">
+    <cpn
+         :cnumb1="numb1"
+         :cnumb2="numb2"
+         @inputchange1="cpnChange1"
+         @inputchange2="cpnChange2" />
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>props: {{cnumb1}}</h2>
+      <h2>{{dnumb1}}</h2>
+      <input type="text" v-model.number="dnumb1" @input="inputChange1">
+      <h2>props: {{cnumb2}}</h2>
+      <h2>{{dnumb2}}</h2>
+      <input type="text" v-model.number="dnumb2" @input="inputChange2">
+    </div>
+  </template>
+
+  <script src="../../js/vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      props: {
+        cnumb1: Number,
+        cnumb2: Number
+      },
+      data() {
+        return {
+          dnumb1: this.cnumb1,
+          dnumb2: this.cnumb2
+        }
+      },
+      methods: {
+        inputChange1() {
+          this.$emit('inputchange1', this.dnumb1);
+          this.dnumb2 = 100 * this.dnumb1;
+          this.$emit('inputchange2', this.dnumb2);
+        },
+        inputChange2() {
+          this.$emit('inputchange2', this.dnumb2);
+          this.dnumb1 = this.dnumb2 / 100;
+          this.$emit('inputchange1', this.dnumb1);
+        }
+      }
+    }
+    const app = new Vue({
+      el: '.app',
+      data: {
+        numb1: 1,
+        numb2: 100
+      },
+      components: {
+        cpn
+      },
+      methods: {
+        cpnChange1(value) {
+          this.numb1 = value;
+        },
+        cpnChange2(value) {
+          this.numb2 = value;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

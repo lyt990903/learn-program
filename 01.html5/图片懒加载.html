@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- 使用自定义属性临时存储src -->
+		<div style="width: 100%; height: 100vh; background-color: antiquewhite"></div>
+		<div>
+			<img data-src="https://tse4-mm.cn.bing.net/th/id/OIP-C.UrvT-PaylqVyw4yiESNtEwHaNK?w=187&h=333&c=7&o=5&dpr=1.25&pid=1.7" />
+		</div>
+		<div style="width: 100%; height: 20vh; background-color: antiquewhite"></div>
+		<div>
+			<img data-src="https://tse3-mm.cn.bing.net/th/id/OIP-C.S3iNl2Rs9Zfdx64pyP_1KAHaNK?w=187&h=333&c=7&o=5&dpr=1.25&pid=1.7" />
+		</div>
+		<div style="width: 100%; height: 30vh; background-color: antiquewhite"></div>
+		<div>
+			<img data-src="https://tse4-mm.cn.bing.net/th/id/OIP-C.ymaHdxVXW60r1f2-GsvnDgHaNK?w=187&h=333&c=7&o=5&dpr=1.25&pid=1.7" />
+		</div>
+		<div style="width: 100%; height: 100vh; background-color: antiquewhite"></div>
+
+		<script>
+			// 当图片出现在视窗内时加载（发送图片请求）
+
+			const images = document.querySelectorAll("img");
+
+			// scroll监听（触发次数多，请求压力较大）
+			// document.addEventListener("scroll", () => {
+			// 	images.forEach(item => {
+			// 		let imgTop = item.getBoundingClientRect().top; // 获取元素距屏幕顶端的位置
+			// 		if (imgTop <= window.innerHeight) {
+			// 			item.setAttribute("src", item.getAttribute("data-src"));
+			// 		}
+			// 	});
+			// });
+
+			// IntersectionObserver交叉监听，当元素出现在视窗内时触发一次，消失时触发一次
+			const callback = entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						let e = entry.target;
+						e.setAttribute("src", e.getAttribute("data-src"));
+						observer.unobserve(e);
+					}
+				});
+			};
+			const observer = new IntersectionObserver(callback);
+			images.forEach(item => {
+				observer.observe(item);
+			});
+		</script>
+	</body>
+</html>

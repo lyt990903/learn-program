@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Examples</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+</head>
+
+<body>
+  <div class="app">
+    <h1>{{name}}</h1>
+    {{message}}
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.app', // 用于挂载要管理的元素（字符串|DOM元素）
+      data: { // 定义数据（对象|方法）
+        message: "Hello Vue!",
+        name: "Vue"
+      }
+    });
+  </script>
+</body>
+
+</html>
